@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     // Increase the warning threshold to 1000 kB (1 MB)
-    chunkSizeWarningLimit: 1000, 
+    chunkSizeWarningLimit: 5000, 
   },
 
 });

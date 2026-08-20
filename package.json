@@ -1,0 +1,32 @@
+{
+  "name": "jules",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "npm run dev --prefix backend",
+    "frontend": "npm run dev --prefix frontend",
+    "dev": "concurrently \"npm run backend\" \"npm run frontend\"",
+    "build": "react-scripts \"backend\" \"frontend\" build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JulesBotty/jules.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/JulesBotty/jules/issues"
+  },
+  "homepage": "https://github.com/JulesBotty/jules#readme",
+  "devDependencies": {
+    "concurrently": "^10.0.5"
+  },
+  "dependencies": {
+    "build": "^0.1.4",
+    "path": "^0.12.7"
+  }
+}
