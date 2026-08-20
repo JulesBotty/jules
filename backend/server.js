@@ -32,15 +32,15 @@ app.use(
 );
 
 
-//app.use(express.static(path.join(import.meta.dirname, '../frontend/dist')));
+app.use(express.static(path.join(import.meta.dirname, '../frontend/dist')));
 
-//app.get('/api/*', (_req, res) => {
- // res.sendFile(path.join(import.meta.dirname, '../frontend/dist/index.html'));
-//});
+app.get('/api/*', (_req, res) => {
+  res.sendFile(path.join(import.meta.dirname, '../frontend/dist/index.html'));
+});
 
-//app.put('/api/*', (_req, res) => {
-//  res.sendFile(path.join(import.meta.dirname, '../frontend/dist/index.html'));
-//});
+app.put('/api/*', (_req, res) => {
+  res.sendFile(path.join(import.meta.dirname, '../frontend/dist/index.html'));
+});
 
 
 
