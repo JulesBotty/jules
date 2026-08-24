@@ -32,33 +32,33 @@ app.use(
 );
 
 
-app.use(express.static(path.join(import.meta.dirname, '../frontend/dist')));
+//app.use(express.static(path.join(import.meta.dirname, '../frontend/dist')));
 
-app.get('/api/health', (_req, res) => {
-  res.sendFile(path.join(import.meta.dirname, '../frontend/dist/index.html'));
+//app.get('/api/health', (_req, res) => {
+ // res.sendFile(path.join(import.meta.dirname, '../frontend/dist/index.html'));
 
-});
+//});
 
-app.put('/api/health', (_req, res) => {
-  res.sendFile(path.join(import.meta.dirname, '../frontend/dist/index.html'));
+//app.put('/api/health', (_req, res) => {
+ // res.sendFile(path.join(import.meta.dirname, '../frontend/dist/index.html'));
   
-});
+//});
 
 
 
 
-//app.use(express.json());
+app.use(express.json());
 app.use(morgan("dev"));
 
 
 
-//app.get("/api/health", (_req, res) => {
- // res.json({ message: "API is running" });
-//});
+app.get("/api/health", (_req, res) => {
+ res.json({ message: "API is running" });
+});
 
-//app.put("/api/health", (_req, res) => {
- // res.json({ message: "API is running" });
-//});
+app.put("/api/health", (_req, res) => {
+  res.json({ message: "API is running" });
+});
 
 
 app.use("/api/auth", authRoutes);
