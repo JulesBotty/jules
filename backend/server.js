@@ -52,11 +52,11 @@ app.use(morgan("dev"));
 
 
 
-app.get("/api/", (_req, res) => {
+app.get("/api/health", (_req, res) => {
  res.json({ message: "API is running" });
 });
 
-app.put("/api/", (_req, res) => {
+app.put("/api/health", (_req, res) => {
   res.json({ message: "API is running" });
 });
 
