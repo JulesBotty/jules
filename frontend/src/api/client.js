@@ -1,8 +1,8 @@
 import axios, { Axios } from "axios";
 
 const normalizeBaseUrl = (value) => value.replace(/\/+$/, "");
-//const apiBaseUrl = normalizeBaseUrl(import.meta.env.VITE_API_BASE_URL || "/api");
-const apiBaseUrl = normalizeBaseUrl(import.meta.env.API_BASE_URL || "/api");
+//const apiBaseUrl = normalizeBaseUrl("http://localhost:5000/api" || "/api");
+const apiBaseUrl = normalizeBaseUrl("https://backend-5pdl.onrender.com/api" || "/api");
 
 const client = axios.create({
   baseURL: apiBaseUrl

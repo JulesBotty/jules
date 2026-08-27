@@ -8,4 +8,7 @@ export default defineConfig({
     chunkSizeWarningLimit: 5000, 
   },
 
+   base: '/',
+  plugins: [react()],
+
 });
