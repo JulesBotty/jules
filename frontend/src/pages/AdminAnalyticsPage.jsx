@@ -124,7 +124,6 @@ const AdminDashboard = () => {
               <option value=""></option>
               <option value="employee">Employé</option>
               <option value="admin">Administrateur</option>
-              <option value="manager">Manager</option>
               
             </select>
 
