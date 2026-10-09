@@ -58,6 +58,23 @@ const Bpa = () => {
     { to: "/admin/tickets", label: "Messages" }
   ];
 
+   const navItemsl = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+     { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+     { to: "/employee/tickets", label: "Message" }
+  ];
+
   const navItemsd = [
     { to: "/employee/history", label: "Liste de Dossiers" },
     { to: "/employee/tickets", label: "Message" }
@@ -414,6 +431,92 @@ const Tm = () => {
 
 
     </SidebarLayout> 
+
+
+
+: user.poste === "Logisticien" ?
+
+
+     <SidebarLayout title="Dossiers en attente de Bon por Accord" items={navItemsl}>
+
+
+      <section className="glass-card p-6 sm:p-2">
+
+
+       
+
+
+
+
+        {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
+        {loading ? (
+          <p className="text-slate-500">Chargement...</p>
+        ) : leavess.length === 0 ? (
+          <p className="text-slate-500">Pas de dossiers ouverts.</p>
+        ) : (
+          <div className="table-wrap">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>N° Dossier</th>
+                  <th>Types</th>
+                  <th>Cient</th>
+                  <th>N° OT</th>
+                  <th>N° LTA / BL</th>
+                  <th>Date de Depôt</th>
+                  <th>STATUT</th>
+                   <th></th>
+                  
+                </tr>
+              </thead>
+              <tbody>          
+
+               {  
+               
+
+               
+               dossierfiltred.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.cetegorie} {leave.leaveType}</td>
+                    <td className="capitalize">{leave.client}</td>
+                    <td className="capitalize">{leave.nbOt}</td>
+                    <td className="capitalize">{leave.nbltabl}</td>
+                    <td className="capitalize">{leave.datedepos} </td>
+                   <td className="capitalize ">
+                      {leave.statutfac ?
+                      <>
+                      En attente de  {leave.statutfac}
+
+                      </> : null
+
+                      }
+                      
+                      
+                    </td>
+                    
+                  </tr>
+                ))
+
+
+
+
+            
+
+                }
+
+
+
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+
+
+    </SidebarLayout> 
+
 
 
 : null

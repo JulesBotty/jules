@@ -14,6 +14,7 @@ import { Bar, Doughnut, Pie } from "react-chartjs-2";
 import SidebarLayout from "../components/SidebarLayout";
 import client from "../api/client";
 import getApiErrorMessage from "../utils/getApiErrorMessage";
+import { useAuth } from "../context/AuthContext";
 
 ChartJS.register(ArcElement, Tooltip, Legend, CategoryScale, LinearScale, BarElement, ChartDataLabels);
 
@@ -36,12 +37,33 @@ const EmployeeAnalyticsPage = () => {
   
   const [analytics, setAnalytics] = useState(null);
 
+
+   const { user } = useAuth();
+
   const navItems = [
     { to: "/employee", label: "Dashboard" },
     { to: "/employee/apply", label: "Ouverture de Dossiers" },
     { to: "/employee/history", label: "Liste des Dossiers" },
     { to: "/employee/analytics", label: "Rapport" },
     { to: "/employee/tickets", label: "Message" }
+  ];
+
+
+   const navItemsl = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+     { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+    { to: "/employee/tickets", label: "Message" },
   ];
 
  
@@ -264,6 +286,106 @@ const EmployeeAnalyticsPage = () => {
   console.log()
 
   return (
+
+
+    <>
+
+    { user.poste === "Logisticien"?
+
+    <SidebarLayout title="Rapport" items={navItemsl}>
+      {error && <p className="glass-card rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
+
+      {loading ? (
+        <div className="glass-card p-5">
+          <p className="text-slate-500">Chargement...</p>
+        </div>
+      ) : (
+        <div className="grid gap-4 xl:grid-cols-2">
+
+          <section className="glass-card border border-sky-100/70 p-4 sm:p-5">
+           <div className="h-12 mb-10"> 
+            <h1 className="mb-4 text-xl font-bold"> DOSSIERS</h1>
+           </div>
+            <div className="glass-card p-4">
+          <p className="text-sm text-slate-500">Dossiers Maritimes</p>
+          <p className="text-3xl font-extrabold text-blue-600">{analytics?.leaves.Maritime || 0}</p>
+        </div>
+        <div className="glass-card p-4">
+          <p className="text-sm text-slate-500">Dossiers Aériens</p>
+          <p className="text-3xl font-extrabold text-cyan-600">{analytics?.leaves.Aerien || 0}</p>
+        </div>
+        <div className="glass-card p-4">
+          <p className="text-sm text-slate-500">Dossiers Terrestres</p>
+          <p className="text-3xl font-extrabold text-emerald-600">{analytics?.leaves.Terrestre || 0}</p>
+        </div>
+        <div className="glass-card p-4">
+          <p className="text-sm text-slate-500">Dosseirs Prestations</p>
+          <p className="text-3xl font-extrabold">{analytics?.leaves.Prestation || 0}</p>
+        </div>
+            
+          </section>
+
+          <section className="glass-card border border-sky-100/70 p-4 sm:p-5">
+            <h2 className="mb-1 text-xl font-bold">Type de Dossiers ouverts (graphique en anneau)</h2>
+            <p className="mb-3 text-sm text-slate-500">Distribution par types de dossiers.</p>
+            <div className="h-72">
+              <Doughnut key={`type-donut-${chartKey}`} data={typeDonutData} options={chartOptions} />
+            </div>
+          </section>
+
+         {/**
+          <section className="glass-card border border-sky-100/70 p-4 sm:p-5">
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <h2 className="text-xl font-bold">Dossiers Approuvés (Histogramme)</h2>
+                <p className="text-sm text-slate-500">Basculer entre le mois en cours et les totaux mensuels annuels.</p>
+              </div>
+              <div className="flex rounded-xl border border-slate-300 bg-white/70 p-1">
+                <button
+                  type="button"
+                  onClick={() => setViewMode("month")}
+                  className={`rounded-lg px-3 py-1.5 text-sm font-semibold ${
+                    viewMode === "month" ? "bg-slate-900 text-white" : "text-slate-600"
+                  }`}
+                >
+                  Mois
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setViewMode("year")}
+                  className={`rounded-lg px-3 py-1.5 text-sm font-semibold ${
+                    viewMode === "year" ? "bg-slate-900 text-white" : "text-slate-600"
+                  }`}
+                >
+                  Année
+                </button>
+              </div>
+            </div>
+            <div className="h-72">
+              <Bar key={`days-bar-${viewMode}-${chartKey}`} data={takenDaysBarData} options={chartOptions} />
+            </div>
+          </section>
+           */} 
+
+          {/*<section className="glass-card border border-emerald-100/70 p-4 sm:p-5 xl:col-span-2">
+           <h2 className="mb-1 text-xl font-bold">Répartition du statut des Dossiers (Pie)</h2>
+            <p className="mb-3 text-sm text-slate-500">Part des Dossiers en cours d'approbation, approuvés et rejetés.</p>
+            <div className="h-80">
+              <Pie key={`status-pie-${chartKey}`} data={statusPieData} options={chartOptions} />
+            </div>
+          </section>*/}
+        </div>
+      )}
+    </SidebarLayout>
+
+
+
+
+
+
+    : user.poste === "Secretaire"?
+
+
     <SidebarLayout title="Rapport" items={navItems}>
       {error && <p className="glass-card rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
@@ -349,6 +471,13 @@ const EmployeeAnalyticsPage = () => {
         </div>
       )}
     </SidebarLayout>
+
+    : null
+
+    }
+
+    </>
+    
   );
 };
 

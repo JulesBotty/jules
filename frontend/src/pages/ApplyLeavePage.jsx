@@ -61,6 +61,23 @@ const ApplyLeavePage = () => {
     { to: "/employee/tickets", label: "Message" }
   ];
 
+  const navItemsl = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+     { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+    { to: "/employee/tickets", label: "Message" },
+  ];
+
 
   if (user.poste === "Logisticien") {
 
@@ -151,10 +168,11 @@ console.log(Tm())
   };
 
   return (
-    <SidebarLayout title="Ouverture Dossier" items={navItems}>
+   
        
-
+<>
 { user.poste === "Logisticien"? 
+ <SidebarLayout title="Ouverture Dossier" items={navItemsl}>
       <form onSubmit={onSubmit} className="glass-card mx-auto max-w-3xl space-y-4 p-5 sm:p-6">
         {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
         {message && <p className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-700">{message}</p>}
@@ -477,11 +495,13 @@ console.log(Tm())
         </button>
       </form>
 
+      </SidebarLayout>
+
       :
 
 
 
-
+     <SidebarLayout title="Ouverture Dossier" items={navItems}>
       <form onSubmit={onSubmit} className="glass-card mx-auto max-w-3xl space-y-4 p-5 sm:p-6">
         {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
         {message && <p className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-700">{message}</p>}
@@ -796,9 +816,13 @@ console.log(Tm())
         </button>
       </form>
 
+      </SidebarLayout>
+
         }
 
-    </SidebarLayout>
+    
+
+    </>
   );
 };
 

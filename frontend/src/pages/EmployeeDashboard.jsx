@@ -70,6 +70,24 @@ const EmployeeDashboard = () => {
     { to: "/employee/analytics", label: "Rapport" },
     { to: "/employee/tickets", label: "Message" }
   ];
+  
+
+  const navItemsl = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+     { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+    { to: "/employee/tickets", label: "Message" },
+  ];
 
   
 
@@ -151,7 +169,7 @@ const EmployeeDashboard = () => {
       :  user.poste === "Logisticien" ?
 
 
-      <SidebarLayout title="Suivi de Dossiers" items={navItemst}>
+      <SidebarLayout title="Suivi de Dossiers" items={navItemsl}>
       {error && <p className="glass-card rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         

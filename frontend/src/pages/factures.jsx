@@ -60,6 +60,24 @@ const Factures = () => {
     { to: "/admin/tickets", label: "Messages" }
   ];
 
+
+   const navItemsl = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+     { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+     { to: "/employee/tickets", label: "Message" },
+  ];
+
   const navItemsd = [
     { to: "/employee/history", label: "Liste de Dossiers" },
     { to: "/employee/tickets", label: "Message" }
@@ -520,8 +538,295 @@ const Factures = () => {
 
     </SidebarLayout> 
 
+
+
+
     
-    : user.role === "admin" ?
+    : user.poste === "Logisticien" ?
+
+
+    <SidebarLayout title="Dossiers Facturés" items={navItemsl}>
+
+
+      <section className="glass-card p-6 sm:p-2">
+
+         <div className="grid gap-4 mb-3 md:grid-cols-2">
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Rechercher</label>
+        <select
+          className="field"
+          value={rechercher}
+          onChange={(e) => setRechercher(e.target.value)}
+          required
+        >
+          <option value=""> </option>
+          <option value="dossier">Par dossier</option>
+          <option value="numerofac">Par N° facture</option>
+          <option value="clients">Par Client</option>
+          <option value="datefac">Par Date</option>
+        </select>
+        </div>
+      { rechercher === "dossier" ?
+
+      <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Rech. par n° Dossier</label>
+      <input 
+        className="field"
+        type="text" 
+        placeholder="Rech. par n° Dossier" 
+        value={recherche}
+        onChange={(e) => setRecherche(e.target.value)}
+      />
+      </div> 
+      
+      :  rechercher === "numerofac" ?
+       
+       <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Rech. par N° Facture</label>
+      <input 
+        className="field"
+        type="text" 
+        placeholder="Rech. par N° Facture" 
+        value={rechnbfc}
+        onChange={(e) => setRechnbfc(e.target.value)}
+      />
+
+      </div>
+ 
+      
+      : rechercher === "clients" ?
+       
+
+       <div>
+      <label className="mb-1 block text-sm font-semibold text-slate-700">Rech. par Client</label>
+      
+       <select
+          className="field"
+          value={rechclient}
+          onChange={(e) => setRechclient(e.target.value)}
+          
+        >
+          <option value="" ></option>
+          { dossierfiltred.map((leave)=> (
+          <option value={leave.client} key={leave._id}> 
+          {leave.client}
+          </option>
+          ))
+          }
+        </select>
+
+      </div> 
+
+       : rechercher === "datefac" ?
+       
+
+       <div>
+      <label className="mb-1 block text-sm font-semibold text-slate-700">Rech. par Date</label>
+      <input 
+        className="field"
+        type="date" 
+        placeholder="Rech. par n° Client" 
+        value={rechdate}
+        onChange={(e) => setRechdate(e.target.value)}
+      />
+
+      </div> 
+      :
+
+      null
+  
+
+      }
+      
+
+
+      </div>
+
+
+
+
+        {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
+        {loading ? (
+          <p className="text-slate-500">Chargement...</p>
+        ) : leavess.length === 0 ? (
+          <p className="text-slate-500">Pas de dossiers ouverts.</p>
+        ) : (
+          <div className="table-wrap">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>N° Dossier</th>
+                  <th>N° de Facture</th>
+                  <th>Date de Facturation</th>
+                  <th>Montant Facture</th>
+                  <th>Deboours Douanes</th>
+                  <th>Deboours Divers</th>
+                  <th>Prestations</th>
+                  
+                   
+                  
+                </tr>
+              </thead>
+              <tbody>
+
+                
+
+               {  recherche ?
+               
+
+               
+                filtredoc.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.nbfact}</td>
+                    <td className="capitalize">{leave.datefacture} </td>
+                   <td className="capitalize ">
+                      {leave.montantfac ?
+                      <>
+                      {leave.montantfac} FCFA
+
+                      </> : null
+
+                      }
+                      
+                    </td>
+                    <td className="capitalize">{leave.deb_douanes} FCFA</td>
+                    <td className="capitalize">{leave.deb_divers} FCFA</td>
+                    <td className="capitalize">{leave.montantprest} FCFA</td>
+                   
+                    
+                  </tr>
+                ))
+
+
+
+                : rechnbfc?
+
+                 filtrenbfac.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.nbfact}</td>
+                    <td className="capitalize">{leave.datefacture} </td>
+                   <td className="capitalize ">
+                      {leave.montantfac ?
+                      <>
+                      {leave.montantfac} FCFA
+
+                      </> : null
+
+                      }
+                      
+                    </td>
+                    <td className="capitalize">{leave.deb_douanes} FCFA</td>
+                    <td className="capitalize">{leave.deb_divers} FCFA</td>
+                    <td className="capitalize">{leave.montantprest} FCFA</td>
+                   
+                    
+                  </tr>
+                ))
+
+
+                : rechclient?
+
+                  filtreclient.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.nbfact}</td>
+                    <td className="capitalize">{leave.datefacture} </td>
+                   <td className="capitalize ">
+                      {leave.montantfac ?
+                      <>
+                      {leave.montantfac} FCFA
+
+                      </> : null
+
+                      }
+                      
+                    </td>
+                    <td className="capitalize">{leave.deb_douanes} FCFA</td>
+                    <td className="capitalize">{leave.deb_divers} FCFA</td>
+                    <td className="capitalize">{leave.montantprest} FCFA</td>
+                   
+                    
+                  </tr>
+                ))
+
+
+
+                : rechdate?
+
+
+                  filtredate.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.nbfact}</td>
+                    <td className="capitalize">{leave.datefacture} </td>
+                   <td className="capitalize ">
+                      {leave.montantfac ?
+                      <>
+                      {leave.montantfac} FCFA
+
+                      </> : null
+
+                      }
+                      
+                    </td>
+                    <td className="capitalize">{leave.deb_douanes} FCFA</td>
+                    <td className="capitalize">{leave.deb_divers} FCFA</td>
+                    <td className="capitalize">{leave.montantprest} FCFA</td>
+                   
+                    
+                  </tr>
+                ))
+
+
+
+                :
+
+
+                dossierfiltred.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.nbfact}</td>
+                    <td className="capitalize">{leave.datefacture} </td>
+                   <td className="capitalize ">
+                      {leave.montantfac ?
+                      <>
+                      {leave.montantfac} FCFA
+
+                      </> : null
+
+                      }
+                      
+                    </td>
+                    <td className="capitalize">{leave.deb_douanes} FCFA</td>
+                    <td className="capitalize">{leave.deb_divers} FCFA</td>
+                    <td className="capitalize">{leave.montantprest} FCFA</td>
+                   
+                    
+                  </tr>
+                ))
+
+            
+
+                }
+
+
+
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+
+
+    </SidebarLayout> 
+
+
+
+: user.role === "admin" ?
 
 
     <SidebarLayout title="Dossiers Facturés" items={navItemsa}>

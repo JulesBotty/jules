@@ -70,6 +70,24 @@ const EmployeeTicketsPage = () => {
     { to: "/admin/tickets", label: "Messages" }
   ];
 
+
+  const navItemsl = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+     { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+     { to: "/employee/tickets", label: "Message" },
+  ];
+
   const navItemsd = [
     { to: "/employee/history", label: "Liste de Dossiers" },
     { to: "/assurance", label: "Assurances" },
@@ -417,9 +435,12 @@ const EmployeeTicketsPage = () => {
     </SidebarLayout>
 
 
+
+
+
   : user.poste === "Logisticien" ?
 
-    <SidebarLayout title="Envoi de Demande" items={navItems}>
+    <SidebarLayout title="Envoi de Demande" items={navItemsl}>
       <section className="glass-card p-4 sm:p-5">
         <h2 className="mb-2 text-xl font-bold">Message</h2>
         <p className="mb-4 text-sm text-slate-500">

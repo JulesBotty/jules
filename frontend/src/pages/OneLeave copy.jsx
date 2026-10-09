@@ -130,6 +130,23 @@ const Onely = () => {
     { to: "/employee/tickets", label: "Message" }
   ];
 
+  const navItemsl = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+     { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+    { to: "/employee/tickets", label: "Message" },
+  ];
+
 
 
 
@@ -149,7 +166,7 @@ const Onely = () => {
 
    
 
-    {user.poste === "Secretaire" || user.poste === "Logisticien"? 
+    {user.poste === "Secretaire"? 
     <SidebarLayout title="Détail" items={navItems}> 
 
   
@@ -320,7 +337,7 @@ const Onely = () => {
 
         />     
 
-        <button  disabled={loading} className="btn-primary ">
+        <button  type="button"  disabled={loading} className="btn-accent ">
           {loading ? "Chargement..." : "Aprouver"}
         </button>
 
@@ -342,9 +359,10 @@ const Onely = () => {
 
         />  
 
-         <button   disabled={loading} className="btn-primary  ">
+         <button  type="button" disabled={loading} className="btn-danger  ">
           {loading ? "Chargement..." : "Rejeter"}
         </button>
+          
 
         </form>
 
@@ -367,11 +385,222 @@ const Onely = () => {
 
 
 
+:user.poste === "Logisticien"? 
+    <SidebarLayout title="Détail" items={navItemsl}> 
+
+  
+
+       <div className="glass-card mx-auto max-w-3xl space-y-4 p-5 sm:p-8">
+        {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
+        {message && <p className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-700">{message}</p>}
+      
+      <div className="text-center mb-10">
+          
+          Dossier: {leaves.nbDossier}
+
+      </div>
+      <h1>
+       <div className="grid gap-4 md:grid-cols-1 ">
+
+       
+
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Type Dossier: {leaves.cetegorie} {leaves.leaveType}</label>
+        
+         
+        </div>
+
+        
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Client: {leaves.client}</label>
+        
+        </div>
+
+        {leaves.leaveType === "Prestation" ? null : 
+
+        <>
+           
+
+          {leaves.leaveType === "Maritime" ? 
+       <>
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Type TC : {leaves.typeTc}</label>
+        
+        </div>
+
+          <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700"> Nombre TC: {leaves.nbTc}</label>
+        
+          
+        </div>
+
+      </>
+           : null
+          }
+
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Fournisseur: {leaves.fournisseur}</label>
+        
+          
+        </div>
+
+       {leaves.client === "CNR" ?  
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">OT n°: {leaves.nbOt}</label>
+        
+          
+        </div> : null
+        }
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">LTA / BL n°: {leaves.nbltabl}</label>
+        
+          
+        </div>
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700"> Nombre Colis: {leaves.nbColis}</label>
+      
+          
+        </div>
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700"> Poids (Kg): {leaves.poids}</label>
+        
+          
+        </div>
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Facture Commerciale n°: {leaves.factcom}</label>
+        
+          
+        </div>
+
+        {leaves.cetegorie === "Import" ? 
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">ETA: {leaves.eta}</label>
+        
+          
+        </div> : 
+        <>
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Bon de Sortie: {leaves.bondesortie}</label>
+        
+          
+        </div>
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Ivoice Export: {leaves.exportinvoice}</label>
+        
+          
+        </div>
+
+        </>}
+
+      
+         
+         
+
+          </>
+
+          }
+        
+          </div>
+
+     {leaves.leaveType === "Prestation" ? null : 
+
+        
+<>
+        <label className="block text-sm font-semibold text-slate-700">Designation: {leaves.desigation}</label>
+        
+  </>
+
+         }
 
 
 
+        <label className="block text-sm font-semibold text-slate-700">Observation: {leaves.reason}</label>
+       </h1>
+       {
+         user.poste === "Secretaire"?
+<div>
+         <Link
+          className=" btn-primary w-full sm:w-auto "
+          to={"/onleave/"+leaves._id}
+                                
+          type="button"
+           >
+          Actualiser 
+                                   
+         </Link>
 
 
+  </div>
+
+        : user.poste === "Logisticien" ?
+     <div className="glass-card mx-auto max-w-3xl space-y-4 p-5 sm:p-2  grid gap-4 md:grid-cols-2">
+      <div>
+        <form onSubmit={onSubmit} >
+
+         <input
+          className="field"
+          type="hidden"
+          name="status"
+          value={leaves.status}
+          onChange={onChange}
+          required
+
+        />     
+
+        <button  type="button"  disabled={loading} className="btn-accent ">
+          {loading ? "Chargement..." : "Aprouver"}
+        </button>
+
+
+        </form>
+      </div>
+       
+      <div>
+
+        <form onSubmit={onSubmitr} >
+
+         <input
+          className="field"
+          type="hidden"
+          name="status"
+          value={leaves.status}
+          onChange={onChange}
+          required
+
+        />  
+
+         <button  type="button" disabled={loading} className="btn-danger  ">
+          {loading ? "Chargement..." : "Rejeter"}
+        </button>
+          
+
+        </form>
+
+      </div>
+
+     </div>
+
+        : 
+        null
+
+
+       }
+        
+      </div>
+    
+   
+      
+    
+    </SidebarLayout>
 
 
 //////////////////////// Facturation

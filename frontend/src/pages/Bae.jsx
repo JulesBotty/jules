@@ -58,6 +58,23 @@ const Bae = () => {
     { to: "/admin/tickets", label: "Messages" }
   ];
 
+  const navItemsl = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+     { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+     { to: "/employee/tickets", label: "Message" }
+  ];
+
   const navItemsd = [
     { to: "/employee/history", label: "Liste de Dossiers" },
     { to: "/assurance", label: "Assurances" },
@@ -1406,6 +1423,245 @@ const Bae = () => {
 
 
     </SidebarLayout>
+
+
+
+: user.poste === "Logisticien" ?
+
+
+    
+
+       <SidebarLayout title="Bon à Enlevé" items={navItemsl}>
+
+
+      <section className="glass-card p-9 sm:p-6">
+
+
+         <div className="grid gap-4 mb-5 md:grid-cols-2">
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Rechercher</label>
+        <select
+          className="field"
+          value={rechercher}
+          onChange={(e) => setRechercher(e.target.value)}
+          required
+        >
+          <option value=""> </option>
+          <option value="exo">Dossiers ayant reçu de Bon à Enlevé</option>
+          <option value="nonexo"> Dossiers n'ayant pas reçu de Bon à Enlevé </option>
+        </select>
+        </div>
+     
+
+
+      </div>
+
+
+       { rechercher === "exo" ?
+
+      <div className="mb-5">
+        <h1 className="text-2xl font-bold tracking-tight text-slate-800">Dossiers ayant reçu de Bon à Enlevé</h1>
+      </div> 
+      
+      :  rechercher === "nonexo" ?
+       
+       <div className="mb-5">
+         <h1 className="text-2xl font-bold tracking-tight text-slate-800">Dossiers n'ayant pas reçu de Bon à Enlevé</h1>
+      </div>
+
+      :
+
+      null
+  
+
+      }
+      
+
+
+
+
+        {error && <p className="rounded-xl bg-rose-50 p-9 text-sm text-rose-600">{error}</p>}
+        {loading ? (
+          <p className="text-slate-500">Chargement...</p>
+        ) : leavess.length === 0 ? (
+          <p className="text-slate-500">Pas de dossiers ouverts.</p>
+        ) : (
+          <div className="table-wrap">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>N° Dossier</th>
+                  <th>N° LTA / BL</th>
+                  <th>N° Lettre d'Exo</th>
+                  <th>N° Declaration</th>
+                  <th>BAE reçu le: </th>
+                  
+                  
+                   <th></th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+
+
+                { rechercher === "exo"  ?
+
+                
+
+                  leavess.map((leave)=> (
+                   <>
+                  { leave.leaveType !== "Prestation"  &  leave.datebae !== "" ? 
+                     
+
+                     <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.nbltabl}</td>
+                    <td className="capitalize"> {leave.nblettreexo }</td>
+                    <td className="capitalize">{leave.nbdecla }</td>
+                    <td className="capitalize">{leave.datebae }</td>
+                    
+                    
+                    <td>
+
+                      <span className=" px-2 py-1 text-xs font-semibold capitalize">
+                        <Link
+                        className="rounded-lg bg-gradient-to-r from-emerald-600 to-teal-500 px-3 py-1.5 text-white transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70"
+                         to={"/onleave/"+leave._id}
+                        
+                        type="button"
+                        >
+                           Actualiser 
+                           
+                        </Link>
+                      </span>
+
+                    </td>
+                  </tr>
+
+                  :
+
+                  null
+
+
+
+
+                  }
+                  
+
+                  </>
+                ))
+
+
+               
+
+                : rechercher === "nonexo" ?
+
+                leavess.map((leave)=> (
+                   <>
+                  { leave.leaveType !== "Prestation"  &  !leave.datebae ? 
+                     
+
+                     <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.nbltabl}</td>
+                    <td className="capitalize"> {leave.nblettreexo }</td>
+                    <td className="capitalize">{leave.nbdecla }</td>
+                    <td className="capitalize">{leave.datebae }</td>
+                    
+                    <td>
+
+                      <span className=" px-2 py-1 text-xs font-semibold capitalize">
+                        <Link
+                        className="rounded-lg bg-gradient-to-r from-emerald-600 to-teal-500 px-3 py-1.5 text-white transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70"
+                         to={"/onleave/"+leave._id}
+                        
+                        type="button"
+                        >
+                           Actualiser 
+                           
+                        </Link>
+                      </span>
+
+                    </td>
+                  </tr>
+
+                  :
+
+                  null
+
+
+
+
+                  }
+                  
+
+                  </>
+                ))
+
+                
+
+                :
+
+                leavess.map((leave)=> (
+
+                  <>
+                  { leave.leaveType !== "Prestation" ? 
+                     
+
+                     <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.nbltabl}</td>
+                    <td className="capitalize"> {leave.nblettreexo }</td>
+                    <td className="capitalize">{leave.nbdecla }</td>
+                    <td className="capitalize">{leave.datebae }</td>
+                    
+                    <td>
+
+                      <span className=" px-2 py-1 text-xs font-semibold capitalize">
+                        <Link
+                        className="rounded-lg bg-gradient-to-r from-emerald-600 to-teal-500 px-3 py-1.5 text-white transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70"
+                         to={"/onleave/"+leave._id}
+                        
+                        type="button"
+                        >
+                           Actualiser 
+                           
+                        </Link>
+                      </span>
+
+                    </td>
+                  </tr>
+
+                  :
+
+                  null
+
+
+
+
+                  }
+                  
+
+                  </>
+                )) 
+
+
+
+                }
+
+
+
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+
+
+
+    </SidebarLayout>
+
 
 
 : null
