@@ -26,6 +26,8 @@ import Declaration from "./pages/Declaration";
 import Regularisation from "./pages/Regularisation";
 import Bae from "./pages/Bae";
 import Onely from "./pages/OneLeave copy";
+import OnelyUser from "./pages/OnlyUser";
+import OnelyUsercopi from "./pages/OnlyUsercopi";
 
 
 
@@ -149,6 +151,24 @@ const App = () => (
       element={
         <ProtectedRoute roles={["employee"]}>
           <Onely />
+        </ProtectedRoute>
+      }
+    />
+
+    <Route
+      path="/onlyuser/:id"
+      element={
+        <ProtectedRoute>
+          <OnelyUser />
+        </ProtectedRoute>
+      }
+    />
+
+     <Route
+      path="/onlyuserupt/:id"
+      element={
+        <ProtectedRoute>
+          <OnelyUsercopi />
         </ProtectedRoute>
       }
     />

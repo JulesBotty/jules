@@ -145,7 +145,7 @@ const EmployeeTicketsPage = () => {
       <section className="glass-card p-4 sm:p-5">
         <h2 className="mb-2 text-xl font-bold">Message</h2>
         <p className="mb-4 text-sm text-slate-500">
-          Besoin d'aide ? Adressez une demande au Responsable concernant le traitement d'un dossier.
+          Adressez une demande au Responsable concernant le traitement d'un dossier.
         </p>
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
@@ -169,7 +169,7 @@ const EmployeeTicketsPage = () => {
           <input
             className="field md:col-span-2"
             name="subject"
-            placeholder="Subject"
+            placeholder="Objet"
             value={form.subject}
             onChange={onChange}
             required
@@ -179,7 +179,7 @@ const EmployeeTicketsPage = () => {
             className="field md:col-span-2"
             name="description"
             rows="5"
-            placeholder="Describe your issue in detail"
+            placeholder="Detail de la Demande"
             value={form.description}
             onChange={onChange}
             required
@@ -205,12 +205,15 @@ const EmployeeTicketsPage = () => {
                   <h3 className="text-base font-bold text-slate-800">{ticket.subject}</h3>
                   <div className="flex flex-wrap gap-2 text-xs font-semibold">
                     
-                    <span className="rounded-full bg-sky-100 px-2 py-1 capitalize text-sky-700">
+                   {/** <span className="rounded-full bg-sky-100 px-2 py-1 capitalize text-sky-700">
                       {ticket.category.replaceAll(" ", " ")}
                     </span>
                     <span className="rounded-full bg-amber-100 px-2 py-1 capitalize text-amber-700">
                       {ticket.priority}
                     </span>
+
+                     */}
+
                     <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-slate-700">
                       {ticket.status.replaceAll(" ", " ")}
                     </span>
@@ -244,7 +247,7 @@ const EmployeeTicketsPage = () => {
       <section className="glass-card p-4 sm:p-5">
         <h2 className="mb-2 text-xl font-bold">Message</h2>
         <p className="mb-4 text-sm text-slate-500">
-          Besoin d'aide ? Adressez une demande au Responsable concernant le traitement d'un dossier.
+          Adressez une demande au Responsable concernant le traitement d'un dossier.
         </p>
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
@@ -268,7 +271,7 @@ const EmployeeTicketsPage = () => {
           <input
             className="field md:col-span-2"
             name="subject"
-            placeholder="Subject"
+            placeholder="Objet"
             value={form.subject}
             onChange={onChange}
             required
@@ -278,7 +281,7 @@ const EmployeeTicketsPage = () => {
             className="field md:col-span-2"
             name="description"
             rows="5"
-            placeholder="Describe your issue in detail"
+            placeholder="Detail de la Demande"
             value={form.description}
             onChange={onChange}
             required
@@ -304,12 +307,14 @@ const EmployeeTicketsPage = () => {
                   <h3 className="text-base font-bold text-slate-800">{ticket.subject}</h3>
                   <div className="flex flex-wrap gap-2 text-xs font-semibold">
                     
-                    <span className="rounded-full bg-sky-100 px-2 py-1 capitalize text-sky-700">
+                     {/** <span className="rounded-full bg-sky-100 px-2 py-1 capitalize text-sky-700">
                       {ticket.category.replaceAll(" ", " ")}
                     </span>
                     <span className="rounded-full bg-amber-100 px-2 py-1 capitalize text-amber-700">
                       {ticket.priority}
                     </span>
+
+                     */}
                     <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-slate-700">
                       {ticket.status.replaceAll(" ", " ")}
                     </span>
@@ -342,7 +347,7 @@ const EmployeeTicketsPage = () => {
       <section className="glass-card p-4 sm:p-5">
         <h2 className="mb-2 text-xl font-bold">Message</h2>
         <p className="mb-4 text-sm text-slate-500">
-          Besoin d'aide ? Adressez une demande au Responsable concernant le traitement d'un dossier.
+          Adressez une demande au Responsable concernant le traitement d'un dossier.
         </p>
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
@@ -366,7 +371,7 @@ const EmployeeTicketsPage = () => {
           <input
             className="field md:col-span-2"
             name="subject"
-            placeholder="Subject"
+            placeholder="Objet"
             value={form.subject}
             onChange={onChange}
             required
@@ -376,7 +381,7 @@ const EmployeeTicketsPage = () => {
             className="field md:col-span-2"
             name="description"
             rows="5"
-            placeholder="Describe your issue in detail"
+            placeholder="Detail de la Demande"
             value={form.description}
             onChange={onChange}
             required
@@ -402,12 +407,14 @@ const EmployeeTicketsPage = () => {
                   <h3 className="text-base font-bold text-slate-800">{ticket.subject}</h3>
                   <div className="flex flex-wrap gap-2 text-xs font-semibold">
                     
-                    <span className="rounded-full bg-sky-100 px-2 py-1 capitalize text-sky-700">
+                    {/** <span className="rounded-full bg-sky-100 px-2 py-1 capitalize text-sky-700">
                       {ticket.category.replaceAll(" ", " ")}
                     </span>
                     <span className="rounded-full bg-amber-100 px-2 py-1 capitalize text-amber-700">
                       {ticket.priority}
                     </span>
+
+                     */}
                     <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-slate-700">
                       {ticket.status.replaceAll(" ", " ")}
                     </span>
@@ -444,7 +451,7 @@ const EmployeeTicketsPage = () => {
       <section className="glass-card p-4 sm:p-5">
         <h2 className="mb-2 text-xl font-bold">Message</h2>
         <p className="mb-4 text-sm text-slate-500">
-          Besoin d'aide ? Adressez une demande au Responsable concernant le traitement d'un dossier.
+          Adressez une demande au Responsable concernant le traitement d'un dossier.
         </p>
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
@@ -468,7 +475,7 @@ const EmployeeTicketsPage = () => {
           <input
             className="field md:col-span-2"
             name="subject"
-            placeholder="Subject"
+            placeholder="Objet"
             value={form.subject}
             onChange={onChange}
             required
@@ -478,7 +485,7 @@ const EmployeeTicketsPage = () => {
             className="field md:col-span-2"
             name="description"
             rows="5"
-            placeholder="Describe your issue in detail"
+            placeholder="Detail de la Demande"
             value={form.description}
             onChange={onChange}
             required
@@ -504,12 +511,14 @@ const EmployeeTicketsPage = () => {
                   <h3 className="text-base font-bold text-slate-800">{ticket.subject}</h3>
                   <div className="flex flex-wrap gap-2 text-xs font-semibold">
                     
-                    <span className="rounded-full bg-sky-100 px-2 py-1 capitalize text-sky-700">
+                    {/** <span className="rounded-full bg-sky-100 px-2 py-1 capitalize text-sky-700">
                       {ticket.category.replaceAll(" ", " ")}
                     </span>
                     <span className="rounded-full bg-amber-100 px-2 py-1 capitalize text-amber-700">
                       {ticket.priority}
                     </span>
+
+                     */}
                     <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-slate-700">
                       {ticket.status.replaceAll(" ", " ")}
                     </span>

@@ -181,7 +181,7 @@ const Onely = () => {
 
       </div>
       <h1>
-       <div className="grid gap-4 md:grid-cols-1 ">
+       <div className="grid gap-4 md:grid-cols-3 ">
 
        
 
@@ -400,13 +400,13 @@ const Onely = () => {
 
       </div>
       <h1>
-       <div className="grid gap-4 md:grid-cols-1 ">
+       <div className="grid gap-4 md:grid-cols-3 ">
 
        
 
 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">Type Dossier: {leaves.cetegorie} {leaves.leaveType}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">Type Dossier: {leaves.cetegorie} {leaves.leaveType}</label>
         
          
         </div>
@@ -414,7 +414,7 @@ const Onely = () => {
         
 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">Client: {leaves.client}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">Client: {leaves.client}</label>
         
         </div>
 
@@ -426,12 +426,12 @@ const Onely = () => {
           {leaves.leaveType === "Maritime" ? 
        <>
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">Type TC : {leaves.typeTc}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">Type TC : {leaves.typeTc}</label>
         
         </div>
 
           <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700"> Nombre TC: {leaves.nbTc}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700"> Nombre TC: {leaves.nbTc}</label>
         
           
         </div>
@@ -442,59 +442,59 @@ const Onely = () => {
 
 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">Fournisseur: {leaves.fournisseur}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">Fournisseur: {leaves.fournisseur}</label>
         
           
         </div>
 
        {leaves.client === "CNR" ?  
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">OT n°: {leaves.nbOt}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">OT n°: {leaves.nbOt}</label>
         
           
         </div> : null
         }
 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">LTA / BL n°: {leaves.nbltabl}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">LTA / BL n°: {leaves.nbltabl}</label>
         
           
         </div>
 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700"> Nombre Colis: {leaves.nbColis}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700"> Nombre Colis: {leaves.nbColis}</label>
       
           
         </div>
 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700"> Poids (Kg): {leaves.poids}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700"> Poids (Kg): {leaves.poids}</label>
         
           
         </div>
 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">Facture Commerciale n°: {leaves.factcom}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">Facture Commerciale n°: {leaves.factcom}</label>
         
           
         </div>
 
         {leaves.cetegorie === "Import" ? 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">ETA: {leaves.eta}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">ETA: {leaves.eta}</label>
         
           
         </div> : 
         <>
 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">Bon de Sortie: {leaves.bondesortie}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">Bon de Sortie: {leaves.bondesortie}</label>
         
           
         </div>
 
         <div>
-        <label className="mb-1 block text-sm font-semibold text-slate-700">Ivoice Export: {leaves.exportinvoice}</label>
+        <label className="mb-3 block text-sm font-semibold text-slate-700">Ivoice Export: {leaves.exportinvoice}</label>
         
           
         </div>
@@ -515,7 +515,7 @@ const Onely = () => {
 
         
 <>
-        <label className="block text-sm font-semibold text-slate-700">Designation: {leaves.desigation}</label>
+        <label className="block mb-3 text-sm font-semibold text-slate-700">Designation: {leaves.desigation}</label>
         
   </>
 
@@ -523,7 +523,7 @@ const Onely = () => {
 
 
 
-        <label className="block text-sm font-semibold text-slate-700">Observation: {leaves.reason}</label>
+        <label className="block mb-3 text-sm font-semibold text-slate-700">Observation: {leaves.reason}</label>
        </h1>
        {
          user.poste === "Secretaire"?
@@ -556,7 +556,7 @@ const Onely = () => {
 
         />     
 
-        <button  type="button"  disabled={loading} className="btn-accent ">
+        <button  type="button"  disabled={loading} className="btn-primary ">
           {loading ? "Chargement..." : "Aprouver"}
         </button>
 

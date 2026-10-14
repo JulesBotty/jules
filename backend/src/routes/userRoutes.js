@@ -3,7 +3,8 @@ import {
   createUserByAdmin,
   deleteUser,
   getAnalytics,
-  listUsers
+  listUsers,
+  updateUser
 } from "../controllers/userController.js";
 import protect from "../middleware/authMiddleware.js";
 import authorizeRoles from "../middleware/roleMiddleware.js";
@@ -17,6 +18,7 @@ router.use(protect, authorizeRoles("admin"));
 router.get("/", asyncHandler(listUsers));
 router.get("/analytics", asyncHandler(getAnalytics));
 router.post("/", createUserValidator, validateRequest, asyncHandler(createUserByAdmin));
+router.get("/userUpt/:id", asyncHandler(updateUser));
 router.delete("/:id", asyncHandler(deleteUser));
 
 export default router;

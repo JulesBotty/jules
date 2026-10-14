@@ -54,4 +54,41 @@ const getMe = async (req, res) => {
   res.json({ user: req.user });
 };
 
-export { register, login, getMe };
+
+
+
+
+const getUserById = async (id) => {
+   
+    return await modelByRole.findById(id);
+   
+};
+
+
+
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { name, email, password, role, poste } = req.body;
+
+
+  const user = await getMe(id);
+
+
+ if (!user) {
+    return res.status(404).json({ message: "User request not found" });
+  }
+
+user.password = password;
+
+  
+
+  
+  await user.save();
+  console.log(user)
+
+  res.json({
+    user
+ });
+};
+
+export { register, updateUser, login, getMe };

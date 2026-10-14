@@ -1,0 +1,306 @@
+import React, { useEffect, useState, } from "react";
+import toast from "react-hot-toast";
+import SidebarLayout from "../components/SidebarLayout";
+import client from "../api/client";
+import { useAuth } from "../context/AuthContext";
+import { Link, useNavigate, useNavigation, useParams } from "react-router-dom";
+ import getApiErrorMessage from "../utils/getApiErrorMessage";
+import LeaveHistoryPage from "./LeaveHistoryPage";
+import { Route } from "react-router-dom";
+import { Axios } from "axios";
+
+
+const OnelyUsercopi = () => {
+  const [leaves, setLeaves] = useState([]);
+  const [loading, setLoading] = useState(false);
+   const [form, setForm] = useState({ name: "", email: "", password: "" });
+  const [error, setError] = useState("");
+  const [message, setMessage] = useState("");
+ 
+  
+  const {id} = useParams()
+  const [elements, setElements] = useState([]);
+  const [editId, setEditId] = useState();
+  const [valeurModifiee, setValeurModifiee] = useState('');
+
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+   
+
+
+   const onChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+
+    const onSubmitM = async (e) => {
+    e.preventDefault();
+    setError("");
+    setLoading(true);
+    try {
+      await register(form);
+      toast.success("Registration successful");
+      navigate("/employee");
+    } catch (err) {
+      setError(err.response?.data?.message || "Registration failed");
+      toast.error(err.response?.data?.message || "Registration failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    try {
+      await client.put(`/auth/uptUser/${id}`,
+        form,
+    );
+      toast.success(" Enregistrer ");
+      navigate("/login");
+    } catch (err) {
+      const msg = getApiErrorMessage(err, "La modification a échoué");
+      setError(msg);
+      toast.error(msg);
+    }
+  };
+
+   
+
+   const onSubmit1 = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setMessage("");
+
+    leaves.status = "Aprouvé";
+
+    try {
+      await client.put(
+        `/leaves/updateleave/${id}`,
+        leaves,  
+      );
+      setMessage("Enregistré");
+      toast.success("Enregistré");
+
+      setLeaves();
+      
+       navigate('/employee/history');
+     
+    } catch (err) {
+      setError(err.response?.data?.message || "Errer d'enregistrement");
+      toast.error(err.response?.data?.message || "Errer d'enregistrement");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+
+
+  const onSubmitr = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    setMessage("");
+
+    leaves.status = "Rejeté"
+
+    try {
+      await client.put(
+        `/leaves/updateleave/${id}`,
+        leaves,  
+      );
+      setMessage("Enregistré");
+      toast.success("Enregistré");
+
+      setLeaves();
+      
+       navigate('/employee/history');
+     
+    } catch (err) {
+      setError(err.response?.data?.message || "Errer d'enregistrement");
+      toast.error(err.response?.data?.message || "Errer d'enregistrement");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+ 
+  const navItems = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+    { to: "/employee/tickets", label: "Message" }
+  ];
+
+  const navItemsfac = [
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/employee/tickets", label: "Message" }
+  ];
+
+  const navItemsd = [
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+    { to: "/employee/tickets", label: "Message" }
+  ];
+
+  const navItemsl = [
+    { to: "/employee", label: "Dashboard" },
+    { to: "/employee/apply", label: "Ouverture Dossiers" },
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/employee/analytics", label: "Rapport" },
+     { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+    { to: "/employee/tickets", label: "Message" },
+  ];
+
+  const navItemsa = [
+    { to: "/admin/analytics", label: "Suivi des Dossiers" },
+    { to: "/history", label: "Liste Dossiers" },
+    { to: "/admin/user", label: "Gestion Utilisateurs" },
+    { to: "/bpafac", label: "En attente de BPA" },
+    { to: "/bcfac", label: "En attente de BC" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "BAE" },
+    { to: "/admin/tickets", label: "Messages" }
+  ];
+
+
+ let navb = "";
+
+if (user.poste === "Secretaire") {
+
+   navb =  navItems;
+
+} else if ( user.poste === "Logisticien") {
+
+  navb =  navItemsl;
+
+} else if ( user.poste === "Facturier") {
+
+  navb =  navItemsfac;
+
+} else if ( user.poste === "Declarant") {
+
+  navb =  navItemsd;
+
+} else if ( user.role === "admin") {
+
+  navb =  navItemsa;
+
+}
+ 
+  
+
+  return (
+
+    <>
+     
+    
+    
+    
+    <SidebarLayout title="Modifier Mot de Passe"
+
+    items={navb}
+
+    > 
+     
+     
+   
+
+  
+
+       <div className="glass-card mx-auto max-w-3xl space-y-4 p-5 sm:p-8">
+        {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
+        {message && <p className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-700">{message}</p>}
+      
+      <div className="grid mb-10 gap-4 md:grid-cols-1">
+          <div className="text-center">
+
+         {user?.name}
+
+
+         </div>  
+
+        
+          
+
+      </div>
+      <h1>
+       <div className="grid mb-1 gap-4 md:grid-cols-1 ">
+
+          
+        <div className="auth-form-pane">
+          <form onSubmit={onSubmit} className="auth-form-inner">
+            
+
+            <p className="text-sm text-slate-600">Nouveau Mot de passe</p>
+
+            <input
+              className="field"
+              type="password"
+              name="password"
+              placeholder="Nouveau Mot de passe"
+              value={form.password}
+              onChange={onChange}
+              required
+            />
+
+
+            <button disabled={loading} className="btn-primary w-full" type="submit">
+              {loading ? "Modification..." : "Enregistrer"}
+            </button>
+           
+          </form>
+        </div>
+         
+        
+
+       
+               
+     </div>
+
+     
+
+     </h1>
+
+     </div>
+
+    
+
+     </SidebarLayout>
+
+   
+
+    
+      
+   
+    </>
+  
+  );
+
+};
+
+
+export default OnelyUsercopi;

@@ -1,5 +1,7 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
+import { VscAccount } from "react-icons/vsc";
+import { BsFillPersonFill } from "react-icons/bs";
 
 
 const SidebarLayout = ({ title, items, children }) => {
@@ -30,7 +32,7 @@ const SidebarLayout = ({ title, items, children }) => {
                   }`
                 }
               >
-                {item.label}
+                {item.label} 
               </NavLink>
             ))}
           </nav>
@@ -47,9 +49,13 @@ const SidebarLayout = ({ title, items, children }) => {
         <main className="space-y-4">
           <header className="glass-card flex items-center justify-between p-4 sm:p-5">
             <h1 className="text-2xl font-bold tracking-tight text-slate-800">{title}</h1>
-            <span className="pulse-soft rounded-full bg-teal-100 px-3 py-1 text-xs font-semibold text-teal-700">
-              Active
-            </span>
+            
+
+            <Link className="pulse-soft rounded-full bg-blue-400 px-3 py-3 text-xs font-semibold text-teal-5000"
+            to={"/onlyuser/"+user._id}
+            >
+           <BsFillPersonFill  />
+            </Link>
           </header>
           {children}
         </main>

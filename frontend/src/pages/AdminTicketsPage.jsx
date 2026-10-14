@@ -62,7 +62,7 @@ const AdminTicketsPage = () => {
   const openReply = (ticket) => {
     setSelectedTicketId(ticket._id);
     setReplyForm({
-      status: ticket.status === "open" ? "in_progress" : ticket.status,
+      status: ticket.status === "accordée" ? "En_attente" : ticket.status,
       adminReply: ticket.adminReply || ""
     });
   };
@@ -116,12 +116,13 @@ const AdminTicketsPage = () => {
                 <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
                   <h3 className="font-bold text-slate-800">{ticket.subject}</h3>
                   <div className="flex flex-wrap gap-2 text-xs font-semibold">
-                    <span className="rounded-full bg-cyan-100 px-2 py-1 capitalize text-cyan-700">
+                   {/** <span className="rounded-full bg-cyan-100 px-2 py-1 capitalize text-cyan-700">
                       {ticket.category.replaceAll("_", " ")}
                     </span>
                     <span className="rounded-full bg-amber-100 px-2 py-1 capitalize text-amber-700">
                       {ticket.priority}
                     </span>
+                     */}
                     <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-slate-700">
                       {ticket.status.replaceAll("_", " ")}
                     </span>
@@ -144,7 +145,7 @@ const AdminTicketsPage = () => {
                   onClick={() => openReply(ticket)}
                   className="btn-primary mt-3 text-sm"
                 >
-                  Reply / Update
+                  Repondre / Actualiser
                 </button>
               </article>
             ))}
@@ -154,29 +155,28 @@ const AdminTicketsPage = () => {
 
       {selectedTicketId && (
         <section className="glass-card border border-cyan-200/80 p-4 sm:p-5">
-          <h2 className="mb-3 text-lg font-bold">Reply To Ticket</h2>
+          <h2 className="mb-3 text-lg font-bold">Reponse</h2>
           <form onSubmit={submitReply} className="space-y-3">
             <select
               className="field"
               value={replyForm.status}
               onChange={(e) => setReplyForm((p) => ({ ...p, status: e.target.value }))}
             >
-              <option value="open">Open</option>
-              <option value="in_progress">In Progress</option>
-              <option value="resolved">Resolved</option>
-              <option value="closed">Closed</option>
+              <option value="Accordée">Accordée</option>
+              <option value="En_attente">En attente</option>
+              <option value="Rejetée">Rejetée</option>
             </select>
             <textarea
               className="field"
               rows="5"
-              placeholder="Write admin response"
+              placeholder="Laissez un message"
               value={replyForm.adminReply}
               onChange={(e) => setReplyForm((p) => ({ ...p, adminReply: e.target.value }))}
-              required
+              
             />
             <div className="flex gap-2">
               <button type="submit" className="btn-primary" disabled={updating}>
-                {updating ? "Saving..." : "Save Reply"}
+                {updating ? "Envoi..." : "Envoyer"}
               </button>
               <button
                 type="button"
@@ -186,7 +186,7 @@ const AdminTicketsPage = () => {
                   setReplyForm(emptyReply);
                 }}
               >
-                Cancel
+                Annuler
               </button>
             </div>
           </form>

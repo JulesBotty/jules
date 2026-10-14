@@ -23,11 +23,11 @@ const ticketSchema = new mongoose.Schema(
       //enum: ["low", "medium", "high"],
       default: ""
     },
-    subject: { type: String, required: true, trim: true },
-    description: { type: String, required: true, trim: true },
+    subject: { type: String, default: "" },
+    description: { type: String, default: "" },
     status: {
       type: String,
-     // enum: ["open", "in_progress", "resolved", "closed"],
+      //enum: ["open", "in_progress", "resolved", "closed"],
       default: ""
     },
     adminReply: { type: String, default: "" },

@@ -88,12 +88,12 @@ const LoginPage = () => {
             <button disabled={loading} className="btn-primary w-full" type="submit">
               {loading ? "Chargement..." : "Connexion"}
             </button>
-            <p className="text-sm text-slate-600">
+            {/*<p className="text-sm text-slate-600">
               Nouveau Utilisateur?{" "}
               <Link className="auth-link" to="/register">
                 Creer un compte
               </Link>
-            </p>
+            </p>*/}
           </form>
         </div>
       </div>

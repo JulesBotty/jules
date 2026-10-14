@@ -38,6 +38,51 @@ const createUserByAdmin = async (req, res) => {
   });
 };
 
+const getUserById = async (id) => {
+   
+    return await modelByRole.findById(id);
+   
+};
+
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+  const { name, email, password, role, poste } = req.body;
+
+
+  //const user = await getUserById(id);
+
+  if (id === String(req.user._id)) {
+    return res.status(400).json({ message: "Admin cannot delete self" });
+  }
+
+  let user = null;
+  for (const currentRole of roleOrder) {
+    user = await modelByRole[currentRole].findById(id);
+    if (user) break;
+  }
+
+ if (!user) {
+    return res.status(404).json({ message: "User request not found" });
+  }
+
+
+user.password = password;
+
+  
+
+  
+  await user.save();
+  console.log(user)
+
+  res.json({
+    user
+ });
+};
+
+
+
+
+
 const deleteUser = async (req, res) => {
   const { id } = req.params;
   if (id === String(req.user._id)) {
@@ -56,6 +101,8 @@ const deleteUser = async (req, res) => {
   await user.deleteOne();
   res.json({ message: "User deleted" });
 };
+
+
 
 const getAnalytics = async (_req, res) => {
   const [admins, managers, employees, totalLeaves, pendingLeaves, approvedLeaves, rejectedLeaves, Maritimes, Aeriens, Terrestres, Prestations] =
@@ -113,4 +160,4 @@ const getAnalytics = async (_req, res) => {
   });
 };
 
-export { listUsers, createUserByAdmin, deleteUser, getAnalytics };
+export { listUsers, createUserByAdmin, updateUser, deleteUser, getAnalytics };
