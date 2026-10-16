@@ -55,6 +55,14 @@ const EmployeeTicketsPage = () => {
     { to: "/employee/tickets", label: "Message" }
   ];
 
+
+   const navItemsc = [
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/employee/tickets", label: "Message" }
+  ];
+
   const navItemsa = [
     { to: "/admin/analytics", label: "Suivi des Dossiers" },
     { to: "/admin/user", label: "Gestion Utilisateurs" },
@@ -543,6 +551,175 @@ const EmployeeTicketsPage = () => {
           </div>
         )}
       </section>
+    </SidebarLayout>
+
+
+   
+: user.poste === "Comptable" ?
+
+    <SidebarLayout title="Envoi de Demande" items={navItemsc}>
+
+<div className="grid gap-4 md:grid-cols-2">
+
+      <section className="glass-card p-4 sm:p-5">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <h2 className="text-xl font-bold">Toutes les demandes</h2>
+         {/** <select
+            className="field w-full max-w-[240px]"
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+          >
+            <option value="all">All Statuses</option>
+            <option value="open">Open</option>
+            <option value="in_progress">In Progress</option>
+            <option value="resolved">Resolved</option>
+            <option value="closed">Closed</option>
+          </select> */}
+        </div>
+
+        {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
+        {loading ? (
+          <p className="text-slate-500">chargement des Messages...</p>
+        ) : tickets.length === 0 ? (
+          <p className="text-slate-500">Pas de Messages disponibles.</p>
+        ) : (
+          <div className="space-y-3">
+            {tickets.map((ticket) => (
+              <article key={ticket._id} className="rounded-xl border border-slate-200/80 bg-white/75 p-4">
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="font-bold text-slate-800">{ticket.subject}</h3>
+                  <div className="flex flex-wrap gap-2 text-xs font-semibold">
+                   {/** <span className="rounded-full bg-cyan-100 px-2 py-1 capitalize text-cyan-700">
+                      {ticket.category.replaceAll("_", " ")}
+                    </span>
+                    <span className="rounded-full bg-amber-100 px-2 py-1 capitalize text-amber-700">
+                      {ticket.priority}
+                    </span>
+                     */}
+                    <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-slate-700">
+                      {ticket.status.replaceAll("_", " ")}
+                    </span>
+                  </div>
+                </div>
+                <p className="text-sm text-slate-600">
+                  <span className="font-semibold">Employee:</span> {ticket.employeeName} ({ticket.employeeEmail})
+                </p>
+                <p className="mt-2 text-sm text-slate-700">{ticket.description}</p>
+
+                {ticket.adminReply && (
+                  <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm">
+                    <p className="font-semibold text-emerald-700">Current Admin Reply</p>
+                    <p className="text-emerald-800">{ticket.adminReply}</p>
+                  </div>
+                )}
+
+                
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+
+
+
+
+      <section className="glass-card p-4 sm:p-5">
+        <h2 className="mb-2 text-xl font-bold">Message</h2>
+        <p className="mb-4 text-sm text-slate-500">
+          Adressez une demande au Responsable concernant le traitement d'un dossier.
+        </p>
+        {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
+
+        <form onSubmit={submitTicket} className="grid gap-3 md:grid-cols-2">
+         {/** 
+           <select className="field" name="category" value={form.category} onChange={onChange}>
+            {categoryOptions.map((option) => (
+              <option key={option.value} value={option.value}>
+                {option.label}
+              </option>
+            ))}
+          </select>
+
+          <select className="field" name="priority" value={form.priority} onChange={onChange}>
+            <option value="low">Low Priority</option>
+            <option value="medium">Medium Priority</option>
+            <option value="high">High Priority</option>
+          </select>
+          */}
+
+          <input
+            className="field md:col-span-2"
+            name="subject"
+            placeholder="Objet"
+            value={form.subject}
+            onChange={onChange}
+            required
+          />
+
+          <textarea
+            className="field md:col-span-2"
+            name="description"
+            rows="5"
+            placeholder="Detail de la Demande"
+            value={form.description}
+            onChange={onChange}
+            required
+          />
+
+          <button type="submit" className="btn-primary md:col-span-2 md:w-fit" disabled={submitting}>
+            {submitting ? "Envoi..." : "Envoyer"}
+          </button>
+        </form>
+      </section>
+
+      <section className="glass-card p-4 sm:p-5">
+        <h2 className="mb-3 text-xl font-bold">Mes Demandes</h2>
+        {loading ? (
+          <p className="text-slate-500">Chargement...</p>
+        ) : tickets.length === 0 ? (
+          <p className="text-slate-500">Pas de Demandes.</p>
+        ) : (
+          <div className="space-y-3">
+            {tickets.map((ticket) => (
+              <article key={ticket._id} className="rounded-xl border border-slate-200/80 bg-white/75 p-4">
+                <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
+                  <h3 className="text-base font-bold text-slate-800">{ticket.subject}</h3>
+                  <div className="flex flex-wrap gap-2 text-xs font-semibold">
+                    
+                    {/** <span className="rounded-full bg-sky-100 px-2 py-1 capitalize text-sky-700">
+                      {ticket.category.replaceAll(" ", " ")}
+                    </span>
+                    <span className="rounded-full bg-amber-100 px-2 py-1 capitalize text-amber-700">
+                      {ticket.priority}
+                    </span>
+
+                     */}
+                    <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-slate-700">
+                      {ticket.status.replaceAll(" ", " ")}
+                    </span>
+                    
+                  </div>
+                </div>
+                <p className="mb-3 text-sm text-slate-600">{ticket.description}</p>
+
+                {ticket.adminReply ? (
+                  <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm">
+                    <p className="font-semibold text-emerald-700">
+                     Reponse de {ticket.repliedByAdminName ? `(${ticket.repliedByAdminName})` : ""}
+                    </p>
+                    <p className="text-emerald-800">{ticket.adminReply}</p>
+                  </div>
+                ) : (
+                  <p className="text-sm text-slate-500">
+                    En attente de réponse.</p>
+                )}
+              </article>
+            ))}
+          </div>
+        )}
+      </section>
+
+      </div>
     </SidebarLayout>
 
     : null

@@ -447,11 +447,13 @@ const Oneleave = () => {
 
   
 
-       <form onSubmit={onSubmit} className="glass-card mx-auto max-w-3xl space-y-4 p-5 sm:p-6">
+       <form onSubmit={onSubmit} className="">
         {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
         {message && <p className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-700">{message}</p>}
       
-      <div className="text-center mb-10">
+
+      <div className="glass-card mx-auto max-w-3xl space-y-4 p-5 sm:p-6">
+      <div className="text-center mb-10 ">
           
           Dossier: {leaves.nbDossier}
 
@@ -737,16 +739,11 @@ const Oneleave = () => {
           onChange={onChange}
           
         />
-        <button type="submit" disabled={loading} className="btn-primary w-full sm:w-auto">
-          {loading ? "Chargement..." : "Mettre à jour"}
-        </button>
-      </form>
 
+      </div>
 
-    
-    <form onSubmit={onSubmit} className="glass-card mx-auto max-w-3xl space-y-4 p-5 sm:p-6">
-        {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
-        {message && <p className="rounded-xl bg-emerald-50 p-3 text-sm text-emerald-700">{message}</p>}
+      <div className="glass-card mx-auto max-w-3xl space-y-4 p-5 sm:p-6">
+       
       
       <div className="text-center mb-10">
           
@@ -942,7 +939,11 @@ const Oneleave = () => {
         <button type="submit" disabled={loading} className="btn-primary w-full sm:w-auto">
           {loading ? "Chargement..." : "Mettre à jour"}
         </button>
+      
+      </div>
+      
       </form>
+
 
     
     

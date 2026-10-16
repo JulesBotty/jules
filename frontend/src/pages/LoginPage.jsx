@@ -31,6 +31,8 @@ const LoginPage = () => {
         navigate("/employee/history");
       } else if(user.poste === "Facturier"){
         navigate("/employee/history");
+      } else if(user.poste === "Comptable"){
+        navigate("/employee/history");
       } else{
         navigate("/employee");
       }

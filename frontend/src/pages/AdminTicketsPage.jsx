@@ -162,6 +162,7 @@ const AdminTicketsPage = () => {
               value={replyForm.status}
               onChange={(e) => setReplyForm((p) => ({ ...p, status: e.target.value }))}
             >
+               <option value=""></option>
               <option value="Accordée">Accordée</option>
               <option value="En_attente">En attente</option>
               <option value="Rejetée">Rejetée</option>

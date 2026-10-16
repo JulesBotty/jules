@@ -143,6 +143,16 @@ const OnelyUsercopi = () => {
     { to: "/employee/tickets", label: "Message" }
   ];
 
+
+  
+   const navItemsc = [
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/employee/tickets", label: "Message" }
+  ];
+
+
   const navItemsd = [
     { to: "/employee/history", label: "Liste de Dossiers" },
     { to: "/assurance", label: "Assurances" },
@@ -204,6 +214,10 @@ if (user.poste === "Secretaire") {
 } else if ( user.poste === "Declarant") {
 
   navb =  navItemsd;
+
+} else if ( user.poste === "Comptable") {
+
+  navb =  navItemsc;
 
 } else if ( user.role === "admin") {
 

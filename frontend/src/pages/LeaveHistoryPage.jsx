@@ -84,6 +84,15 @@ const LeaveHistoryPage = () => {
     { to: "/employee/tickets", label: "Message" }
   ];
 
+  
+ const navItemsc = [
+    { to: "/employee/history", label: "Liste de Dossiers" },
+    { to: "/factures", label: "Factures" },
+    { to: "/releves", label: "Relevés" },
+    { to: "/employee/tickets", label: "Message" }
+  ];
+
+
   const navItemsd = [
     { to: "/employee/history", label: "Liste de Dossiers" },
     { to: "/assurance", label: "Assurances" },
@@ -2367,7 +2376,280 @@ const LeaveHistoryPage = () => {
 
 
 
-    </SidebarLayout> 
+    </SidebarLayout>
+
+
+
+:user.poste === "Comptable" ? 
+    <SidebarLayout title="Liste de Dossiers" items={navItemsc}> 
+
+    <section className="glass-card p-4 sm:p-5">
+
+       
+
+
+      <div className="grid gap-4 mb-3 md:grid-cols-2">
+
+        <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Rechercher</label>
+        <select
+          className="field"
+          value={rechercher}
+          onChange={(e) => setRechercher(e.target.value)}
+          required
+        >
+          <option value=""> </option>
+          <option value="dossier">Par dossier</option>
+          <option value="ltabl">Par LTA, BL </option>
+          <option value="ot">Par OT</option>
+          <option value="clients">Par Client</option>
+        </select>
+        </div>
+      { rechercher === "dossier" ?
+
+      <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Rech. par n° Dossier</label>
+      <input 
+        className="field"
+        type="text" 
+        placeholder="Rech. par n° Dossier" 
+        value={recherche}
+        onChange={(e) => setRecherche(e.target.value)}
+      />
+      </div> 
+      
+      :  rechercher === "ltabl" ?
+       
+       <div>
+        <label className="mb-1 block text-sm font-semibold text-slate-700">Rech. par LTA, BL</label>
+      <input 
+        className="field"
+        type="text" 
+        placeholder="Rech. par LTA, BL" 
+        value={rechltabl}
+        onChange={(e) => setRechltabl(e.target.value)}
+      />
+
+      </div>
+
+      : rechercher === "ot" ?
+
+      <div>
+      <label className="mb-1 block text-sm font-semibold text-slate-700">Rech. par OT</label>
+      <input 
+        className="field"
+        type="text" 
+        placeholder="Rech. par n° OT" 
+        value={rechot}
+        onChange={(e) => setRechot(e.target.value)}
+      />
+
+      </div>  
+      
+      : rechercher === "clients" ?
+       
+
+       <div>
+      <label className="mb-1 block text-sm font-semibold text-slate-700">Rech. par Client</label>
+      <input 
+        className="field"
+        type="text" 
+        placeholder="Rech. par n° Client" 
+        value={rechclient}
+        onChange={(e) => setRechclient(e.target.value)}
+      />
+
+      </div> 
+      :
+
+      null
+  
+
+      }
+      
+
+
+      </div>
+
+
+        {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
+        {loading ? (
+          <p className="text-slate-500">Chargement...</p>
+        ) : leavess.length === 0 ? (
+          <p className="text-slate-500">Pas de dossiers ouverts.</p>
+        ) : (
+          <div className="table-wrap">
+            <table className="data-table">
+              <thead>
+                <tr>
+                  <th>N° Dossier</th>
+                  <th>Types</th>
+                  <th>Cient</th>
+                  <th>N° OT</th>
+                  <th>N° LTA / BL</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+
+
+                {recherche  ?
+
+                
+
+                  dossierfiltred.map((leave)=> (
+                   <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.cetegorie} {leave.leaveType}</td>
+                    <td className="capitalize">{leave.client}</td>
+                    <td className="capitalize">{leave.nbOt}</td>
+                    <td className="capitalize">{leave.nbltabl}</td>
+
+                    <td className="capitalize">
+                      { leave.poids ?
+                        <> 
+                         {leave.nbColis} colis de {leave.poids} Kg
+                        </>
+                         :
+
+                         null
+
+                      }
+                      
+                    </td>
+                    
+                   
+
+                    
+                    
+                   
+                  </tr>
+                ))
+
+
+               
+
+                : rechltabl ?
+
+                filtreltabld.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.cetegorie} {leave.leaveType}</td>
+                    <td className="capitalize">{leave.client}</td>
+                    <td className="capitalize">{leave.nbOt}</td>
+                    <td className="capitalize">{leave.nbltabl}</td>
+
+                    <td className="capitalize">
+                      { leave.poids ?
+                        <> 
+                         {leave.nbColis} colis de {leave.poids} Kg
+                        </>
+                         :
+
+                         null
+
+                      }
+                      
+                    </td>
+                    
+                    
+                  </tr>
+                ))
+
+                : rechot?
+
+                filtreotd.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.cetegorie} {leave.leaveType}</td>
+                    <td className="capitalize">{leave.client}</td>
+                    <td className="capitalize">{leave.nbOt}</td>
+                    <td className="capitalize">{leave.nbltabl}</td>
+
+                    <td className="capitalize">
+                      { leave.poids ?
+                        <> 
+                         {leave.nbColis} colis de {leave.poids} Kg
+                        </>
+                         :
+
+                         null
+
+                      }
+                      
+                    </td>
+                    
+                   
+                  </tr>
+                ))
+
+                : rechclient ?
+
+                filtreclientd.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.cetegorie} {leave.leaveType}</td>
+                    <td className="capitalize">{leave.client}</td>
+                    <td className="capitalize">{leave.nbOt}</td>
+                    <td className="capitalize">{leave.nbltabl}</td>
+
+                    <td className="capitalize">
+                      { leave.poids ?
+                        <> 
+                         {leave.nbColis} colis de {leave.poids} Kg
+                        </>
+                         :
+
+                         null
+
+                      }
+                      
+                    </td>
+                    
+                    
+                  </tr>
+                )) 
+
+                :
+
+                leavess.map((leave)=> (
+                  <tr key={leave._id}>
+                    <td className="capitalize">{leave.nbDossier}</td>
+                    <td className="capitalize">{leave.cetegorie} {leave.leaveType}</td>
+                    <td className="capitalize">{leave.client}</td>
+                    <td className="capitalize">{leave.nbOt}</td>
+                    <td className="capitalize">{leave.nbltabl}</td>
+
+                    <td className="capitalize">
+                      { leave.poids ?
+                        <> 
+                         {leave.nbColis} colis de {leave.poids} Kg
+                        </>
+                         :
+
+                         null
+
+                      }
+                      
+                    </td>
+                    
+                    
+                  </tr>
+                )) 
+
+
+
+                }
+
+            
+
+              </tbody>
+            </table>
+          </div>
+        )}
+      </section>
+    
+    </SidebarLayout>
 
 
 : null
