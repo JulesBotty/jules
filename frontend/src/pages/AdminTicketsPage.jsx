@@ -88,7 +88,9 @@ const AdminTicketsPage = () => {
 
   return (
     <SidebarLayout title="Demandes" items={navItemsa}>
+       
       <section className="glass-card p-4 sm:p-5">
+
         <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-xl font-bold">Messages</h2>
          {/** <select
@@ -104,14 +106,20 @@ const AdminTicketsPage = () => {
           </select> */}
         </div>
 
+
+        
+
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
         {loading ? (
           <p className="text-slate-500">chargement des Messages...</p>
         ) : tickets.length === 0 ? (
           <p className="text-slate-500">Pas de Messages disponibles.</p>
         ) : (
+          
           <div className="space-y-3">
             {tickets.map((ticket) => (
+
+            
               <article key={ticket._id} className="rounded-xl border border-slate-200/80 bg-white/75 p-4">
                 <div className="mb-2 flex flex-wrap items-center justify-between gap-2">
                   <h3 className="font-bold text-slate-800">{ticket.subject}</h3>
@@ -147,10 +155,19 @@ const AdminTicketsPage = () => {
                 >
                   Repondre / Actualiser
                 </button>
+              
               </article>
-            ))}
+          
+          
+           )) }
+ 
+
           </div>
         )}
+        
+
+
+
       </section>
 
       {selectedTicketId && (
@@ -193,6 +210,8 @@ const AdminTicketsPage = () => {
           </form>
         </section>
       )}
+
+  
     </SidebarLayout>
   );
 };

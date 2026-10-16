@@ -23,8 +23,9 @@ router.post(
 );
 
 router.get("/my", protect, authorizeRoles("employee"), asyncHandler(getMyTickets));
+router.get("/all", protect, authorizeRoles("employee"), asyncHandler(getAllTicketsForAdmin));
 
-router.get("/", protect, authorizeRoles("admin"), asyncHandler(getAllTicketsForAdmin));
+router.get("/", protect, asyncHandler(getAllTicketsForAdmin));
 
 router.patch(
   "/:id/reply",

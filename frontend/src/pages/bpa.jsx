@@ -334,6 +334,11 @@ const Tm = () => {
 
     </SidebarLayout> 
 
+
+
+
+
+
     
     : user.role === "admin" ?
 
@@ -342,11 +347,6 @@ const Tm = () => {
 
 
       <section className="glass-card p-6 sm:p-2">
-
-
-       
-
-
 
 
         {error && <p className="rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
@@ -366,7 +366,7 @@ const Tm = () => {
                   <th>N° LTA / BL</th>
                   <th>Date de Depôt</th>
                   <th>STATUT</th>
-                   <th></th>
+                   
                   
                 </tr>
               </thead>
@@ -395,21 +395,7 @@ const Tm = () => {
                       
                       
                     </td>
-                    <td>
-
-                      <span className=" px-2 py-1 text-xs font-semibold capitalize">
-                        <Link
-                        className="rounded-lg bg-gradient-to-r from-emerald-600 to-teal-500 px-3 py-1.5 text-white transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70"
-                         to={"/onleave/"+leave._id}
-                        
-                        type="button"
-                        >
-                           Actualiser 
-                           
-                        </Link>
-                      </span>
-
-                    </td>
+                   
                   </tr>
                 ))
 
