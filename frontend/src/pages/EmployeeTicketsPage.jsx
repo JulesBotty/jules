@@ -232,14 +232,14 @@ const EmployeeTicketsPage = () => {
 
 
 
-      <section className="glass-card p-4 sm:p-5">
+       <section className="glass-card p-4 sm:p-5">
         <h2 className="mb-2 text-xl font-bold">Message</h2>
         <p className="mb-4 text-sm text-slate-500">
           Adressez une demande au Responsable concernant le traitement d'un dossier.
         </p>
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
-        <form onSubmit={submitTicket} className="grid gap-3 md:grid-cols-2">
+        <form onSubmit={submitTicket} className="grid gap-3 mb-5 md:grid-cols-2">
          {/** 
            <select className="field" name="category" value={form.category} onChange={onChange}>
             {categoryOptions.map((option) => (
@@ -279,15 +279,8 @@ const EmployeeTicketsPage = () => {
             {submitting ? "Envoi..." : "Envoyer"}
           </button>
         </form>
-      </section>
 
-      <section>
-
-        
-      </section>
-
-
-      <section className="glass-card p-4 sm:p-5">
+        <div className="glass-card mb-5 p-4 sm:p-5">
         <h2 className="mb-3 text-xl font-bold">Mes Demandes</h2>
         {loading ? (
           <p className="text-slate-500">Chargement...</p>
@@ -332,6 +325,9 @@ const EmployeeTicketsPage = () => {
             ))}
           </div>
         )}
+      </div>
+
+        
       </section>
 
       </div>
@@ -408,14 +404,14 @@ const EmployeeTicketsPage = () => {
 
 
 
-      <section className="glass-card p-4 sm:p-5">
+       <section className="glass-card p-4 sm:p-5">
         <h2 className="mb-2 text-xl font-bold">Message</h2>
         <p className="mb-4 text-sm text-slate-500">
           Adressez une demande au Responsable concernant le traitement d'un dossier.
         </p>
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
-        <form onSubmit={submitTicket} className="grid gap-3 md:grid-cols-2">
+        <form onSubmit={submitTicket} className="grid gap-3 mb-5 md:grid-cols-2">
          {/** 
            <select className="field" name="category" value={form.category} onChange={onChange}>
             {categoryOptions.map((option) => (
@@ -455,15 +451,8 @@ const EmployeeTicketsPage = () => {
             {submitting ? "Envoi..." : "Envoyer"}
           </button>
         </form>
-      </section>
 
-      <section>
-
-        
-      </section>
-
-
-      <section className="glass-card p-4 sm:p-5">
+        <div className="glass-card mb-5 p-4 sm:p-5">
         <h2 className="mb-3 text-xl font-bold">Mes Demandes</h2>
         {loading ? (
           <p className="text-slate-500">Chargement...</p>
@@ -508,6 +497,9 @@ const EmployeeTicketsPage = () => {
             ))}
           </div>
         )}
+      </div>
+
+        
       </section>
 
       </div>
@@ -582,14 +574,14 @@ const EmployeeTicketsPage = () => {
 
 
 
-      <section className="glass-card p-4 sm:p-5">
+       <section className="glass-card p-4 sm:p-5">
         <h2 className="mb-2 text-xl font-bold">Message</h2>
         <p className="mb-4 text-sm text-slate-500">
           Adressez une demande au Responsable concernant le traitement d'un dossier.
         </p>
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
-        <form onSubmit={submitTicket} className="grid gap-3 md:grid-cols-2">
+        <form onSubmit={submitTicket} className="grid gap-3 mb-5 md:grid-cols-2">
          {/** 
            <select className="field" name="category" value={form.category} onChange={onChange}>
             {categoryOptions.map((option) => (
@@ -629,15 +621,8 @@ const EmployeeTicketsPage = () => {
             {submitting ? "Envoi..." : "Envoyer"}
           </button>
         </form>
-      </section>
 
-      <section>
-
-        
-      </section>
-
-
-      <section className="glass-card p-4 sm:p-5">
+        <div className="glass-card mb-5 p-4 sm:p-5">
         <h2 className="mb-3 text-xl font-bold">Mes Demandes</h2>
         {loading ? (
           <p className="text-slate-500">Chargement...</p>
@@ -682,6 +667,9 @@ const EmployeeTicketsPage = () => {
             ))}
           </div>
         )}
+      </div>
+
+        
       </section>
 
       </div>
@@ -765,7 +753,7 @@ const EmployeeTicketsPage = () => {
         </p>
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
-        <form onSubmit={submitTicket} className="grid gap-3 md:grid-cols-2">
+        <form onSubmit={submitTicket} className="grid gap-3 mb-5 md:grid-cols-2">
          {/** 
            <select className="field" name="category" value={form.category} onChange={onChange}>
             {categoryOptions.map((option) => (
@@ -805,15 +793,8 @@ const EmployeeTicketsPage = () => {
             {submitting ? "Envoi..." : "Envoyer"}
           </button>
         </form>
-      </section>
 
-      <section>
-
-        
-      </section>
-
-
-      <section className="glass-card p-4 sm:p-5">
+        <div className="glass-card mb-5 p-4 sm:p-5">
         <h2 className="mb-3 text-xl font-bold">Mes Demandes</h2>
         {loading ? (
           <p className="text-slate-500">Chargement...</p>
@@ -858,6 +839,9 @@ const EmployeeTicketsPage = () => {
             ))}
           </div>
         )}
+      </div>
+
+        
       </section>
 
       </div>
@@ -940,7 +924,7 @@ const EmployeeTicketsPage = () => {
         </p>
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
 
-        <form onSubmit={submitTicket} className="grid gap-3 md:grid-cols-2">
+        <form onSubmit={submitTicket} className="grid gap-3 mb-5 md:grid-cols-2">
          {/** 
            <select className="field" name="category" value={form.category} onChange={onChange}>
             {categoryOptions.map((option) => (
@@ -980,15 +964,8 @@ const EmployeeTicketsPage = () => {
             {submitting ? "Envoi..." : "Envoyer"}
           </button>
         </form>
-      </section>
 
-      <section>
-
-        
-      </section>
-
-
-      <section className="glass-card p-4 sm:p-5">
+        <div className="glass-card mb-5 p-4 sm:p-5">
         <h2 className="mb-3 text-xl font-bold">Mes Demandes</h2>
         {loading ? (
           <p className="text-slate-500">Chargement...</p>
@@ -1033,7 +1010,13 @@ const EmployeeTicketsPage = () => {
             ))}
           </div>
         )}
+      </div>
+
+        
       </section>
+
+
+      
 
       </div>
     </SidebarLayout>
