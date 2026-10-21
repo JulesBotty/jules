@@ -63,7 +63,11 @@ const AdminTicketsPage = () => {
     setSelectedTicketId(ticket._id);
     setReplyForm({
       status: ticket.status === "accordée" ? "En_attente" : ticket.status,
-      adminReply: ticket.adminReply || ""
+      adminReply: ticket.adminReply || "",
+      employeeName: ticket.employeeName || "",
+      employeeEmail: ticket.employeeEmail || "",
+      description: ticket.description || "",
+      subject: ticket.subject || ""
     });
   };
 
@@ -73,12 +77,12 @@ const AdminTicketsPage = () => {
     setUpdating(true);
     try {
       await client.patch(`/tickets/${selectedTicketId}/reply`, replyForm);
-      toast.success("Ticket updated");
+      toast.success("Envoyée");
       setSelectedTicketId(null);
       setReplyForm(emptyReply);
       await loadTickets();
     } catch (err) {
-      const msg = getApiErrorMessage(err, "Failed to update ticket");
+      const msg = getApiErrorMessage(err, "Echec d'envoi");
       setError(msg);
       toast.error(msg);
     } finally {
@@ -88,22 +92,23 @@ const AdminTicketsPage = () => {
 
   return (
     <SidebarLayout title="Demandes" items={navItemsa}>
+
+      <div className="grid gap-4 md:grid-cols-2">
        
       <section className="glass-card p-4 sm:p-5">
 
         <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-xl font-bold">Messages</h2>
-         {/** <select
+          <select
             className="field w-full max-w-[240px]"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
-            <option value="all">All Statuses</option>
-            <option value="open">Open</option>
-            <option value="in_progress">In Progress</option>
-            <option value="resolved">Resolved</option>
-            <option value="closed">Closed</option>
-          </select> */}
+            <option value="all">Toutes les Demandes</option>
+            <option value="Accordée">Accordée</option>
+            <option value="En_attente">En attente</option>
+            <option value="Rejetée">Rejetée</option>
+          </select> 
         </div>
 
 
@@ -137,7 +142,7 @@ const AdminTicketsPage = () => {
                   </div>
                 </div>
                 <p className="text-sm text-slate-600">
-                  <span className="font-semibold">Employee:</span> {ticket.employeeName} ({ticket.employeeEmail})
+                  <span className="font-semibold">De:</span> {ticket.employeeName} ({ticket.employeeEmail})
                 </p>
                 <p className="mt-2 text-sm text-slate-700">{ticket.description}</p>
 
@@ -172,10 +177,25 @@ const AdminTicketsPage = () => {
 
       {selectedTicketId && (
         <section className="glass-card border border-cyan-200/80 p-4 sm:p-5">
-          <h2 className="mb-3 text-lg font-bold">Reponse</h2>
-          <form onSubmit={submitReply} className="space-y-3">
+          
+          <div className="mb-5 text-lg">
+
+          <div className="mb-5 grid  md:grid-cols-2 "><h2 className="mb-1 text-lg font-bold">Repondre à</h2>  {replyForm.employeeName} ({replyForm.employeeEmail})</div>
+        
+          <div className="mb-5 grid  md:grid-cols-2 "> <h2 className="mb-1 text-lg font-bold">Objet: </h2> {replyForm.subject}</div> 
+          
+          <div className="mb-5 grid  md:grid-cols-2 "> <h2 className="mb-1 text-lg font-bold">Description: </h2> {replyForm.description}</div>
+           
+
+          </div>
+
+          
+
+          <form onSubmit={submitReply} className=" mb-8 space-y-3">
+            <h2 className=" text-lg font-bold">Reponse</h2>
             <select
               className="field"
+              required
               value={replyForm.status}
               onChange={(e) => setReplyForm((p) => ({ ...p, status: e.target.value }))}
             >
@@ -210,6 +230,8 @@ const AdminTicketsPage = () => {
           </form>
         </section>
       )}
+
+      </div>
 
   
     </SidebarLayout>

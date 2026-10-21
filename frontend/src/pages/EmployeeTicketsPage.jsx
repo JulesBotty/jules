@@ -858,17 +858,16 @@ const EmployeeTicketsPage = () => {
       <section className="glass-card p-4 sm:p-5">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
           <h2 className="text-xl font-bold">Toutes les demandes</h2>
-         {/** <select
+          <select
             className="field w-full max-w-[240px]"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
           >
-            <option value="all">All Statuses</option>
-            <option value="open">Open</option>
-            <option value="in_progress">In Progress</option>
-            <option value="resolved">Resolved</option>
-            <option value="closed">Closed</option>
-          </select> */}
+            <option value="all">Toutes les Demandes</option>
+            <option value="Accordée">Accordée</option>
+            <option value="En_attente">En attente</option>
+            <option value="Rejetée">Rejetée</option>
+          </select> 
         </div>
 
         {error && <p className="mb-3 rounded-xl bg-rose-50 p-3 text-sm text-rose-600">{error}</p>}
@@ -896,7 +895,7 @@ const EmployeeTicketsPage = () => {
                   </div>
                 </div>
                 <p className="text-sm text-slate-600">
-                  <span className="font-semibold">Employee:</span> {ticket.employeeName} ({ticket.employeeEmail})
+                  <span className="font-semibold">De:</span> {ticket.employeeName} ({ticket.employeeEmail})
                 </p>
                 <p className="mt-2 text-sm text-slate-700">{ticket.description}</p>
 
