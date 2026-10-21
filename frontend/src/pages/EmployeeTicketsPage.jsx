@@ -891,7 +891,7 @@ const EmployeeTicketsPage = () => {
                      */}
                     <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-slate-700">
                       {ticket.status.replaceAll("_", " ")}
-                    </span>
+                    </span> par {ticket.repliedByAdminName}
                   </div>
                 </div>
                 <p className="text-sm text-slate-600">
