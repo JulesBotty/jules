@@ -132,8 +132,8 @@ const AdminTicketsPage = () => {
                     </span>
                      */}
                     <span className="rounded-full bg-slate-100 px-2 py-1 capitalize text-slate-700">
-                      {ticket.status.replaceAll("_", " ")}
-                    </span>
+                      {ticket.status.replaceAll("_", " ")} 
+                    </span> par {ticket.repliedByAdminName}
                   </div>
                 </div>
                 <p className="text-sm text-slate-600">
@@ -143,7 +143,7 @@ const AdminTicketsPage = () => {
 
                 {ticket.adminReply && (
                   <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm">
-                    <p className="font-semibold text-emerald-700">Current Admin Reply</p>
+                    <p className="font-semibold text-emerald-700">Reponse </p>
                     <p className="text-emerald-800">{ticket.adminReply}</p>
                   </div>
                 )}

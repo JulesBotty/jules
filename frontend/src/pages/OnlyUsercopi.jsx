@@ -53,7 +53,8 @@ const OnelyUsercopi = () => {
     setLoading(true);
     setError("");
     try {
-      await client.put(`/auth/uptUser/${id}`,
+      await client.put(
+        `/users/userUpt/${id}`,
         form,
     );
       toast.success(" Enregistrer ");
@@ -85,7 +86,7 @@ const OnelyUsercopi = () => {
 
       setLeaves();
       
-       navigate('/employee/history');
+       navigate('/login');
      
     } catch (err) {
       setError(err.response?.data?.message || "Errer d'enregistrement");
@@ -253,7 +254,7 @@ if (user.poste === "Secretaire") {
           <div className="text-center">
 
          {user?.name}
-
+         
 
          </div>  
 

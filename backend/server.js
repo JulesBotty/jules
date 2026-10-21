@@ -13,7 +13,7 @@ import { notFound, errorHandler } from "./src/middleware/errorMiddleware.js";
 const app = express();
 
 const PORT = process.env.PORT || 3000;
-//const PORT = process.env.PORTS || 3000;
+
 //const allowedOrigins = (process.env.CORS_ORIGIN || "")
 const allowedOrigins = (process.env.CORS_API_ORIGIN || "")
   .split(",")

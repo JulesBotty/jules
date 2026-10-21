@@ -217,7 +217,7 @@ const EmployeeTicketsPage = () => {
 
                 {ticket.adminReply && (
                   <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm">
-                    <p className="font-semibold text-emerald-700">Current Admin Reply</p>
+                    <p className="font-semibold text-emerald-700">Reponse de: {ticket.repliedByAdminName}</p>
                     <p className="text-emerald-800">{ticket.adminReply}</p>
                   </div>
                 )}
@@ -389,7 +389,7 @@ const EmployeeTicketsPage = () => {
 
                 {ticket.adminReply && (
                   <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm">
-                    <p className="font-semibold text-emerald-700">Current Admin Reply</p>
+                    <p className="font-semibold text-emerald-700">Reponse de: {ticket.repliedByAdminName}</p>
                     <p className="text-emerald-800">{ticket.adminReply}</p>
                   </div>
                 )}
@@ -559,7 +559,7 @@ const EmployeeTicketsPage = () => {
 
                 {ticket.adminReply && (
                   <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm">
-                    <p className="font-semibold text-emerald-700">Current Admin Reply</p>
+                    <p className="font-semibold text-emerald-700">Reponse de: {ticket.repliedByAdminName}</p>
                     <p className="text-emerald-800">{ticket.adminReply}</p>
                   </div>
                 )}
@@ -731,7 +731,7 @@ const EmployeeTicketsPage = () => {
 
                 {ticket.adminReply && (
                   <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm">
-                    <p className="font-semibold text-emerald-700">Current Admin Reply</p>
+                    <p className="font-semibold text-emerald-700">Reponse de: {ticket.repliedByAdminName}</p>
                     <p className="text-emerald-800">{ticket.adminReply}</p>
                   </div>
                 )}
@@ -902,7 +902,7 @@ const EmployeeTicketsPage = () => {
 
                 {ticket.adminReply && (
                   <div className="mt-3 rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm">
-                    <p className="font-semibold text-emerald-700">Current Admin Reply</p>
+                    <p className="font-semibold text-emerald-700">Reponse de: {ticket.repliedByAdminName}</p>
                     <p className="text-emerald-800">{ticket.adminReply}</p>
                   </div>
                 )}

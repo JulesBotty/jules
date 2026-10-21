@@ -1,5 +1,6 @@
 import { modelByRole, roleOrder } from "../utils/roleModels.js";
 import Leave from "../models/Leave.js";
+import generateToken from "../utils/generateToken.js";
 
 const listUsers = async (_req, res) => {
   const [admins, managers, employees] = await Promise.all([
@@ -38,21 +39,17 @@ const createUserByAdmin = async (req, res) => {
   });
 };
 
-const getUserById = async (id) => {
-   
-    return await modelByRole.findById(id);
-   
-};
+
+
 
 const updateUser = async (req, res) => {
-  const { id } = req.params;
-  const { name, email, password, role, poste } = req.body;
 
+  const { email, password } = req.body;
 
-  //const user = await getUserById(id);
+   const { id } = req.params;
 
   if (id === String(req.user._id)) {
-    return res.status(400).json({ message: "Admin cannot delete self" });
+    return res.status(400).json({ message: "user cannot save self" });
   }
 
   let user = null;
@@ -60,23 +57,15 @@ const updateUser = async (req, res) => {
     user = await modelByRole[currentRole].findById(id);
     if (user) break;
   }
-
- if (!user) {
-    return res.status(404).json({ message: "User request not found" });
+  if (!user) {
+    return res.status(404).json({ message: "User not found" });
   }
 
+  user.password = password;
 
-user.password = password;
-
-  
-
-  
   await user.save();
-  console.log(user)
+  res.json({ message: "User save" });
 
-  res.json({
-    user
- });
 };
 
 
