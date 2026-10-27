@@ -28,6 +28,7 @@ const EmployeeTicketsPage = () => {
   const [loading, setLoading] = useState(true);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
 
    const { user } = useAuth();
 
@@ -126,8 +127,8 @@ const EmployeeTicketsPage = () => {
     setLoading(true);
     setError("");
     try {
-      //const query = statusFilter === "all" ? "" : `?status=${statusFilter}`;
-      const { data } = await client.get(`/tickets/all`);
+      const query = statusFilter === "all" ? "" : `?status=${statusFilter}`;
+      const { data } = await client.get(`/tickets/all${query}`);
       setTicketss(data.tickets || []);
     } catch (err) {
       const msg = getApiErrorMessage(err, "Unable to fetch tickets");
@@ -141,7 +142,7 @@ const EmployeeTicketsPage = () => {
   useEffect(() => {
     loadTickets();
     loadTicketss();
-  }, []);
+  }, [statusFilter]);
 
   const onChange = (e) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
