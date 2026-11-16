@@ -43,18 +43,20 @@ const Assurance = () => {
   ];
 
   const navItemsa = [
-    { to: "/admin/analytics", label: "Suivi des Dossiers" },
+     { to: "/admin/analytics", label: "Suivi des Dossiers" },
     { to: "/history", label: "Liste de Dossiers" },
     { to: "/admin/user", label: "Gestion Utilisateurs" },
+    { to: "/admin/client", label : "Gestion des Clients" },
+    { to: "/admin/fournisseurs", label : "Gestion des Fournisseurs" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Lettres d'Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "Bons a enlever" },
     { to: "/bpafac", label: "En attente de BPA" },
     { to: "/bcfac", label: "En attente de BC" },
     { to: "/factures", label: "Factures" },
     { to: "/releves", label: "Relevés" },
-    { to: "/assurance", label: "Assurances" },
-    { to: "/exo", label: "Exo" },
-    { to: "/declaration", label: "Declaration" },
-    { to: "/regul", label: "Regularisation" },
-    { to: "/bae", label: "BAE" },
     { to: "/admin/tickets", label: "Messages" }
   ];
 
@@ -1261,7 +1263,7 @@ const Assurance = () => {
                   <th>N° LTA / BL</th>
                   <th>Date de Reception</th>
                   
-                   <th></th>
+                 
                   
                 </tr>
               </thead>
@@ -1285,21 +1287,7 @@ const Assurance = () => {
                     <td className="capitalize">{leave.nbltabl}</td>
                     <td className="capitalize"> {leave.dateassur }</td>
                     
-                    <td>
-
-                      <span className=" px-2 py-1 text-xs font-semibold capitalize">
-                        <Link
-                        className="rounded-lg bg-gradient-to-r from-emerald-600 to-teal-500 px-3 py-1.5 text-white transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70"
-                         to={"/onleave/"+leave._id}
-                        
-                        type="button"
-                        >
-                           Actualiser 
-                           
-                        </Link>
-                      </span>
-
-                    </td>
+                    
                   </tr>
 
                   :
@@ -1333,21 +1321,7 @@ const Assurance = () => {
                     <td className="capitalize">{leave.nbltabl}</td>
                     <td className="capitalize"> {leave.dateassur }</td>
                     
-                    <td>
-
-                      <span className=" px-2 py-1 text-xs font-semibold capitalize">
-                        <Link
-                        className="rounded-lg bg-gradient-to-r from-emerald-600 to-teal-500 px-3 py-1.5 text-white transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70"
-                         to={"/onleave/"+leave._id}
-                        
-                        type="button"
-                        >
-                           Actualiser 
-                           
-                        </Link>
-                      </span>
-
-                    </td>
+                    
                   </tr>
 
                   :
@@ -1381,21 +1355,7 @@ const Assurance = () => {
                     <td className="capitalize">{leave.nbltabl}</td>
                     <td className="capitalize"> {leave.dateassur }</td>
                     
-                    <td>
-
-                      <span className=" px-2 py-1 text-xs font-semibold capitalize">
-                        <Link
-                        className="rounded-lg bg-gradient-to-r from-emerald-600 to-teal-500 px-3 py-1.5 text-white transition-all duration-300 hover:-translate-y-0.5 disabled:opacity-70"
-                         to={"/onleave/"+leave._id}
-                        
-                        type="button"
-                        >
-                           Actualiser 
-                           
-                        </Link>
-                      </span>
-
-                    </td>
+                   
                   </tr>
 
                   :

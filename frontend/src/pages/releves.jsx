@@ -53,19 +53,22 @@ const Releve = () => {
   ];
 
 
+
   const navItemsa = [
     { to: "/admin/analytics", label: "Suivi des Dossiers" },
     { to: "/history", label: "Liste de Dossiers" },
     { to: "/admin/user", label: "Gestion Utilisateurs" },
+    { to: "/admin/client", label : "Gestion des Clients" },
+    { to: "/admin/fournisseurs", label : "Gestion des Fournisseurs" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Lettres d'Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "Bons a enlever" },
     { to: "/bpafac", label: "En attente de BPA" },
     { to: "/bcfac", label: "En attente de BC" },
     { to: "/factures", label: "Factures" },
     { to: "/releves", label: "Relevés" },
-    { to: "/assurance", label: "Assurances" },
-    { to: "/exo", label: "Exo" },
-    { to: "/declaration", label: "Declaration" },
-    { to: "/regul", label: "Regularisation" },
-    { to: "/bae", label: "BAE" },
     { to: "/admin/tickets", label: "Messages" }
   ];
 

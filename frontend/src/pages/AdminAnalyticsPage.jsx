@@ -8,7 +8,7 @@ import SidebarLayout from "../components/SidebarLayout";
 import client from "../api/client";
 import getApiErrorMessage from "../utils/getApiErrorMessage";
 
-const emptyUser = { name: "", email: "", password: "123456", role: "employee", poste: ""};
+const emptyUser = { name: "", email: "", password: "123456", role: "", poste: ""};
 
 const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
@@ -18,18 +18,20 @@ const AdminDashboard = () => {
   const [message, setMessage] = useState("");
 
  const navItemsa = [
-    { to: "/admin/analytics", label: "Suivi des Dossiers" },
+     { to: "/admin/analytics", label: "Suivi des Dossiers" },
     { to: "/history", label: "Liste de Dossiers" },
     { to: "/admin/user", label: "Gestion Utilisateurs" },
+    { to: "/admin/client", label : "Gestion des Clients" },
+    { to: "/admin/fournisseurs", label : "Gestion des Fournisseurs" },
+    { to: "/assurance", label: "Assurances" },
+    { to: "/exo", label: "Lettres d'Exo" },
+    { to: "/declaration", label: "Declaration" },
+    { to: "/regul", label: "Regularisation" },
+    { to: "/bae", label: "Bons a enlever" },
     { to: "/bpafac", label: "En attente de BPA" },
     { to: "/bcfac", label: "En attente de BC" },
     { to: "/factures", label: "Factures" },
     { to: "/releves", label: "Relevés" },
-    { to: "/assurance", label: "Assurances" },
-    { to: "/exo", label: "Exo" },
-    { to: "/declaration", label: "Declaration" },
-    { to: "/regul", label: "Regularisation" },
-    { to: "/bae", label: "BAE" },
     { to: "/admin/tickets", label: "Messages" }
   ];
 

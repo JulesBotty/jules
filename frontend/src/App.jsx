@@ -28,6 +28,10 @@ import Bae from "./pages/Bae";
 import Onely from "./pages/OneLeave copy";
 import OnelyUser from "./pages/OnlyUser";
 import OnelyUsercopi from "./pages/OnlyUsercopi";
+import AdminClient from "./pages/AdminClient";
+import AdminClientUpt from "./pages/AdminClientUpt";
+import AdminFournis from "./pages/AdminFournis";
+import AdminFournisUpt from "./pages/AdminFournisUpt";
 
 
 
@@ -120,6 +124,49 @@ const App = () => (
         </ProtectedRoute>
       }
     />
+     <Route
+      path="/admin/client"
+      element={
+        <ProtectedRoute roles={["admin"]}>
+          <AdminClient />
+        </ProtectedRoute>
+      }
+    />
+
+
+    <Route
+      path="/admin/clientUpt/:id"
+      element={
+        <ProtectedRoute roles={["admin"]}>
+          <AdminClientUpt />
+        </ProtectedRoute>
+      }
+    />
+
+
+
+
+    
+     <Route
+      path="/admin/fournisseurs"
+      element={
+        <ProtectedRoute roles={["admin"]}>
+          <AdminFournis/>
+        </ProtectedRoute>
+      }
+    />
+
+
+     <Route
+      path="/admin/fournisUpt/:id"
+      element={
+        <ProtectedRoute roles={["admin"]}>
+          <AdminFournisUpt />
+        </ProtectedRoute>
+      }
+    />
+
+
     <Route
       path="/admin/analytics"
       element={
