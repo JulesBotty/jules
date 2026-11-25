@@ -9,14 +9,13 @@ const leaveSchema = new mongoose.Schema(
     employeeEmail: { type: String, required: true },
     leaveType: {
       type: String,
-       default: "",
-      required: true
+       default: ""
     },
 
-    typds: { type: String, default: ("") },
-    annee : { type: String, default: new Date().getFullYear() },
+    typds: { type: String, default: "" },
+    annee : { type: String, default: "" },
     Idclient : { type: String, default: "" },
-    nbDoss : { type: Number, default: "1" },
+    nbDoss : { type: String, default: "" },
    
 
     cetegorie: { type: String, default: "" },
@@ -64,7 +63,7 @@ const leaveSchema = new mongoose.Schema(
 
     fromDate: {
       type: Date,
-      required: true
+      default: ""
     },
     toDate: {
       type: Date,

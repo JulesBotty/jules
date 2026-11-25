@@ -237,6 +237,8 @@ if (user.poste === "Secretaire") {
           <div className="text-center">Poste : {user?.poste}</div>
 
           <div className="text-center">Role : {user?.role}</div>
+
+          <div className="text-center">Email : {user?.email}</div>
         
           
         

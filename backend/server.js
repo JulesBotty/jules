@@ -1,6 +1,5 @@
 import "dotenv/config";
 import express from "express";
-import path from 'path';
 import cors from "cors";
 import morgan from "morgan";
 import connectDB from "./src/config/db.js";
@@ -11,13 +10,14 @@ import fournisRoutes from "./src/routes/fournisRoutes.js"
 import userRoutes from "./src/routes/userRoutes.js";
 import ticketRoutes from "./src/routes/ticketRoutes.js";
 import { notFound, errorHandler } from "./src/middleware/errorMiddleware.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
 
 const PORT = process.env.PORT || 3000;
 
-//const allowedOrigins = (process.env.CORS_ORIGIN || "")
-const allowedOrigins = (process.env.CORS_API_ORIGIN || "")
+const allowedOrigins = (process.env.CORS_ORIGIN || "")
+//const allowedOrigins = (process.env.CORS_API_ORIGIN || "")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
@@ -53,6 +53,9 @@ app.use(
 
 app.use(express.json());
 app.use(morgan("dev"));
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+//app.use(express.static(path.join(__dirname)));
 
 
 

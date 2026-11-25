@@ -23,7 +23,7 @@ router.post(
 
 
 router.get("/", protect,
- authorizeRoles("admin"),
+ //authorizeRoles("admin"),
  asyncHandler(getMyCliens)
  );
 

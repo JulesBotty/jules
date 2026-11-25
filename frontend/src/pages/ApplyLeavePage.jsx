@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import SidebarLayout from "../components/SidebarLayout";
 import client from "../api/client";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Leave from "../../../backend/src/models/Leave";
 
 const ApplyLeavePage = () => {
 
@@ -11,8 +12,11 @@ const ApplyLeavePage = () => {
   const [form, setForm] = useState({
     leaveType: "",
      
+    annee: "",
+    Idclient: "",
     nbDoss: "",
-
+    
+     
     cetegorie: "",
     nbDossier: "",
     client: "",
@@ -42,7 +46,7 @@ const ApplyLeavePage = () => {
   
 
   
-
+  const [clients, setClients] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
@@ -50,6 +54,8 @@ const ApplyLeavePage = () => {
 
   const [leavess, setLeavess] = useState([]);
   const [leaves, setLeaves] = useState([]);
+  const [docs, setDocs] = useState([]);
+ 
 
   
 
@@ -91,14 +97,36 @@ const ApplyLeavePage = () => {
 
  
   
+ 
 
+   useEffect(() => {
+      const load = async () => {
+        setLoading(true);
+        try {
+          const { data } = await client.get("/leaves/mya");
+          setLeaves(data.leaves);
+          setDocs(data.totalDossier);
+   
+        } catch (err) {
+          setError(err.response?.data?.message || "Unable to fetch leave history");
+          toast.error(err.response?.data?.message || "Unable to fetch leave history");
+        } finally {
+          setLoading(false);
+        }
+      };
+      load();
+    }, []);
+
+
+   
+   
 
 
 const Tm = () => {
   
  if(form.leaveType === "Maritime" & form.cetegorie === "Import"){
     return(
-     "IFlIM"
+     "IM"
     )
  } else if(form.leaveType === "Maritime" & form.cetegorie === "Export"){
     return("EM")
@@ -114,9 +142,47 @@ const Tm = () => {
     return("P")
  };
 };
+ 
+form.Idclient = Tm();
 
-console.log(Tm())
+form.annee = new Date().getFullYear();
 
+form.nbDoss = docs + 1;
+
+form.fromDate = new Date()
+
+
+
+if (form.nbDoss < 10) {
+
+  form.nbDossier = "000"+form.nbDoss+"/"+form.client+"/"+form.annee+form.Idclient
+
+} else if (form.nbDoss >= 100) {
+
+  form.nbDossier = "00"+form.nbDoss+"/"+form.client+"/"+form.annee+form.Idclient
+
+} else if (form.nbDoss >= 1000) {
+
+  form.nbDossier = "0"+form.nbDoss+"/"+form.client+"/"+form.annee+form.Idclient
+
+}
+
+ const loadUsers = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const { data } = await client.get("/clients");
+      setClients(data.clients);
+    } catch (err) {
+      setError(getApiErrorMessage(err, "Unable to fetch Client"));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadUsers();
+  }, []);
 
   
 
@@ -131,10 +197,14 @@ console.log(Tm())
      await client.post("/leaves", form);
       setMessage("Enregistré");
       toast.success("Enregistré");
+
       setForm({ 
         leaveType: "",
         
+         annee: "",
+         Idclient: "",
          nbDoss: "",
+
          cetegorie: "",
          nbDossier: "",
          client: "",
@@ -192,30 +262,12 @@ console.log(Tm())
             />
           
 
-         <div>
-            <label className="mb-1 block text-sm font-semibold text-slate-700">Date d'Ouverture</label>
-            <input
-              className="field"
-              type="date"
-              name="fromDate"
-              value={form.fromDate}
-              onChange={onChange}
-              required
-            />
-          </div>
 
 
 
          <div>
         <label className="mb-1 block text-sm font-semibold text-slate-700">Numero Dossier</label>
-        <input
-          className="field"
-          name="nbDossier"
-          value={form.nbDossier}
-          onChange={onChange}
-          required
-
-        />
+        {form.nbDossier}
           
         </div>
 
@@ -276,12 +328,13 @@ console.log(Tm())
           required
         >
           <option value=""> </option>
-          <option value="CNR">CNR</option>
-          <option value="PETROFAC">PETROFAC</option>
-          <option value="PETROCI">PETROCI</option>
-          <option value="NOPCI">NOPCI</option>
-          <option value="PROMAR SHIPPING">PROMAR SHIPPING</option>
-          <option value="ATT">ATT</option>
+      
+          { clients.map((client)=> (
+          <option value={client.diminClient} key={client._id}> 
+          {client.diminClient}
+          </option>
+          ))
+          }
         </select>
         </div>
 
@@ -510,33 +563,10 @@ console.log(Tm())
        <div className="grid gap-4 md:grid-cols-2">
 
 
-            
-          
-
-         <div>
-            <label className="mb-1 block text-sm font-semibold text-slate-700">Date d'Ouverture</label>
-            <input
-              className="field"
-              type="date"
-              name="fromDate"
-              value={form.fromDate}
-              onChange={onChange}
-              required
-            />
-          </div>
-
-
 
          <div>
         <label className="mb-1 block text-sm font-semibold text-slate-700">Numero Dossier</label>
-        <input
-          className="field"
-          name="nbDossier"
-          value={form.nbDossier}
-          onChange={onChange}
-          required
-
-        />
+        {form.nbDossier}
           
         </div>
 
@@ -597,12 +627,13 @@ console.log(Tm())
           required
         >
           <option value=""> </option>
-          <option value="CNR">CNR</option>
-          <option value="PETROFAC">PETROFAC</option>
-          <option value="PETROCI">PETROCI</option>
-          <option value="NOPCI">NOPCI</option>
-          <option value="PROMAR SHIPPING">PROMAR SHIPPING</option>
-          <option value="ATT">ATT</option>
+          
+           { clients.map((client)=> (
+          <option value={client.diminClient} key={client._id}> 
+          {client.diminClient}
+          </option>
+          ))
+          }
         </select>
         </div>
 

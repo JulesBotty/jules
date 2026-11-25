@@ -121,12 +121,13 @@ const LeaveHistoryPage = () => {
     load();
   }, []);
   
+  console.log(leaves)
 
   useEffect(() => {
     const load = async () => {
       setLoading(true);
       try {
-        const { data } = await client.get("/leaves/my");
+        const { data } = await client.get("/leaves/mya");
         setLeaves(data.leaves);
  
       } catch (err) {

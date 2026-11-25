@@ -76,27 +76,21 @@ const createLeave = async (req, res) => {
     toDate, 
     reason } = req.body;
 
-    const existingDc = await Leave.findOne({
+   const existingDc = await Leave.findOne({
      $or: [{ nbDossier }, { nbDossier }],
-        });
+       });
     
-        if (existingDc) {
-          return res.status(400).json({
+       if (existingDc) {
+         return res.status(400).json({
             success: false,
-            error:
+           error:
               existingDc.nbDossier = nbDossier
                 ? `DOssier ${nbDossier} enregistré.`
-                : "Dossier dejà ouvert",
+               : "Dossier dejà ouvert",
           });
 
         };
 
-   
-
-
-     
-
-  
 
 
   await expireStalePendingLeaves(req.user._id);
@@ -183,7 +177,17 @@ const getMyLeaves = async (req, res) => {
 const getMyLeavesa = async (req, res) => {
  await expireStalePendingLeaves(req.user._id);
   const leaves = await Leave.find().sort({ createdAt: -1 });
-  res.json({ leaves });
+  const [ totalLeaves,  Maritimes, Aeriens, Terrestres, Prestations] =
+    await Promise.all([
+      Leave.countDocuments(),
+      Leave.countDocuments({leaveType: "Maritime"}),
+      Leave.countDocuments({leaveType: "Aerien"}),
+      Leave.countDocuments({leaveType: "Terrestre"}),
+      Leave.countDocuments({leaveType: "Prestation"})
+    ]);
+    const totaDoc = Maritimes + Aeriens + Terrestres; 
+    const totalDossier = Maritimes + Aeriens + Terrestres + Prestations;
+  res.json({ leaves,  Maritimes, Aeriens, Terrestres, Prestations, totaDoc, totalDossier  });
 };
 
 

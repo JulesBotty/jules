@@ -32,6 +32,7 @@ import AdminClient from "./pages/AdminClient";
 import AdminClientUpt from "./pages/AdminClientUpt";
 import AdminFournis from "./pages/AdminFournis";
 import AdminFournisUpt from "./pages/AdminFournisUpt";
+import SearchBar from "./pages/ess";
 
 
 
@@ -297,6 +298,16 @@ const App = () => (
       element={
         <ProtectedRoute>
           <Bae />
+        </ProtectedRoute>
+      }
+    />
+
+
+    <Route
+      path="/essai"
+      element={
+        <ProtectedRoute>
+          <SearchBar />
         </ProtectedRoute>
       }
     />

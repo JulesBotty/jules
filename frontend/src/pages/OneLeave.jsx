@@ -10,6 +10,7 @@ import { Axios } from "axios";
 
 
 const Oneleave = () => {
+  const [clients, setClients] = useState([]);
   const [leaves, setLeaves] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -23,7 +24,24 @@ const Oneleave = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
+  const loadUsers = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const { data } = await client.get("/clients");
+      setClients(data.clients);
+    } catch (err) {
+      setError(getApiErrorMessage(err, "Unable to fetch Client"));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+ 
+
+
    useEffect(() => {
+    loadUsers();
     const load = async () => {
       setLoading(true);
       try {
@@ -216,12 +234,12 @@ const Oneleave = () => {
           required
         >
           <option value=""> </option>
-          <option value="CNR">CNR</option>
-          <option value="PETROFAC">PETROFAC</option>
-          <option value="PETROCI">PETROCI</option>
-          <option value="NOPCI">NOPCI</option>
-          <option value="PROMAR SHIPPING">PROMAR SHIPPING</option>
-          <option value="ATT">ATT</option>
+           { clients.map((client)=> (
+          <option value={client.diminClient} key={client._id}> 
+          {client.diminClient}
+          </option>
+          ))
+          }
         </select>
         </div>
 
@@ -526,12 +544,12 @@ const Oneleave = () => {
           required
         >
           <option value=""> </option>
-          <option value="CNR">CNR</option>
-          <option value="PETROFAC">PETROFAC</option>
-          <option value="PETROCI">PETROCI</option>
-          <option value="NOPCI">NOPCI</option>
-          <option value="PROMAR SHIPPING">PROMAR SHIPPING</option>
-          <option value="ATT">ATT</option>
+           { clients.map((client)=> (
+          <option value={client.diminClient} key={client._id}> 
+          {client.diminClient}
+          </option>
+          ))
+          }
         </select>
         </div>
 

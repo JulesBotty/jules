@@ -150,10 +150,17 @@ const AdminDashboard = () => {
               <option value="Comptable">Comptable</option>
               <option value="Transitaire">Transitaire</option>
               <option value="Chauffeur">Chauffeur</option>
+              <option value="Operationnel">Operationnel</option>
             </select>
-            <button className="btn-primary" type="submit">
+            
+          </div>
+
+           <button className="btn-primary" type="submit">
               Ajouter
             </button>
+
+          <div>
+
           </div>
         </form>
       </section>

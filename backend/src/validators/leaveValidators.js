@@ -10,9 +10,9 @@ const createLeaveValidator = [
  //   .trim()
   //  .isLength({ min: 5 })
   //  .withMessage("Reason must be at least 5 characters")
-  body("nbDossier")
-    .isLength({ min: 1 })
-   .withMessage("Veuillez renseigner le numero de dossier")
+  //body("nbDossier")
+   // .isLength({ min: 1 })
+  // .withMessage("Veuillez renseigner le numero de dossier")
 ];
 
 const updateLeaveStatusValidator = [
