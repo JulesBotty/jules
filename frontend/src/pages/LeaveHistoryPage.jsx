@@ -109,7 +109,7 @@ const LeaveHistoryPage = () => {
     const load = async () => {
       setLoading(true);
       try {
-        const { data } = await client.get("/leaves/mya");
+        const { data } = await client.get("/leaves/my");
         setLeavess(data.leaves);
       } catch (err) {
         setError(err.response?.data?.message || "Unable to fetch leave history");
